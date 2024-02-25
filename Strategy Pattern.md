@@ -96,6 +96,15 @@ A: 在物件導向中，類別通常代表兼具狀態(實例變數)的方法的
 
 ![綜觀封裝行為](https://github.com/koteruon/design_pattern/blob/main/Strategy%20Pattern/%E7%B6%9C%E8%A7%80%E5%B0%81%E8%A3%9D%E8%A1%8C%E7%82%BA.png)
 
+### HAS-A 有時比 IS-A 還要好
+
+每隻鴨子都有FlyBehavior與QuackBehavior，鴨子會將**飛行**和**鳴叫**委託給他們。
+
+把這兩個類別結合起來就是**組合(composition)**，鴨子的行為不是繼承而來，而是和行為物件組合起來獲得的。
+
+> [!TIP]
+> 多用組合，少用繼承
+
 ### 程式碼
 
 1. 創建abstract class Duck，並宣告兩個行為介面型態的參考變數，鴨子子類都會繼承他們。
