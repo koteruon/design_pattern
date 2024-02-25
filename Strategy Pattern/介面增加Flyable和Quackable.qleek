@@ -1,13 +1,36 @@
+Flyable
+	+fly()
+
+Quackable
+	+quack()
+
 Duck
-	+quck()
 	+swim()
-	Abstract +display()
+	+display()
 
 MallardDuck
 	+display(//長得像綠頭鴨)
+	+fly()
+	+quack()
 
 RedheadDuck
 	+display(//長得像美洲潛鴨)
+	+fly()
+	+quack()
+
+RubberDuck
+	+display()
+	+quack()
+
+DecoyDuck
+	+display()
 
 MallardDuck --> Duck
 RedheadDuck --> Duck
+RubberDuck --> Duck
+DecoyDuck --> Duck
+MallardDuck --*> Flyable
+RedheadDuck --*> Flyable
+MallardDuck --*> Quackable
+RedheadDuck --*> Quackable
+RubberDuck --*> Quackable
