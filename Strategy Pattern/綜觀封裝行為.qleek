@@ -1,0 +1,59 @@
+Duck
+	FlyBehavior flyBehavior
+	QuackBehavior quackBehavior
+	swim()
+	display()
+	performQuack()
+	performFly()
+	setFlyBehavior()動態設定飛行行為
+	setQuackBehavior()動態設定鳴叫行為
+
+MallardDuck
+	display()長得像綠頭鴨
+	fly()
+	quack()
+
+RedheadDuck
+	display()長得像美洲潛鴨
+	fly()
+	quack()
+
+RubberDuck
+	display()長的像橡皮鴨
+	quack()
+
+DecoyDuck
+	display()長得像誘餌鴨
+
+FlyBehavior:interface
+	fly()
+
+QuackBehavior:interface
+	quack()
+
+FlyWithWings
+	fly()實作鴨子的飛行行為
+
+FlyNoWay
+	fly()什麼都不做因為不會飛
+
+Quack
+	quack()實作鴨子的叫聲
+
+Squeak
+	quack()橡皮鴨的啾啾聲
+
+MuteQuack
+	quack()什麼都不做因為不會叫
+
+FlyWithWings --*> FlyBehavior
+FlyNoWay --*> FlyBehavior
+Quack --*> QuackBehavior
+Squeak --*> QuackBehavior
+MuteQuack --*> QuackBehavior
+MallardDuck --> Duck
+RedheadDuck --> Duck
+RubberDuck --> Duck
+DecoyDuck --> Duck
+Duck -.-*> FlyBehavior
+Duck -.-*> QuackBehavior
