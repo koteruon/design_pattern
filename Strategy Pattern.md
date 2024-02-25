@@ -24,5 +24,14 @@
 
 ![介面增加Flyable和Quackable](https://github.com/koteruon/design_pattern/blob/main/Strategy%20Pattern/%E4%BB%8B%E9%9D%A2%E5%A2%9E%E5%8A%A0Flyable%E5%92%8CQuackable.png)
 
+**缺點**
+
+1. 如果想要改fly這個行為，所有的子類別都要改
+2. 程式碼無法重複利用
+
+---
+
+
+
 > [!TIP]
 > Optional information to help a user be more successful.
