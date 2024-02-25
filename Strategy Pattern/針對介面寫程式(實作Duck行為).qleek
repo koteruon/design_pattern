@@ -1,13 +1,26 @@
-Duck
-	+quck()
-	+swim()
-	Abstract +display()
+FlyBehavior
+	+fly()
 
-MallardDuck
-	+display(//長得像綠頭鴨)
+QuackBehavior
+	+quack()
 
-RedheadDuck
-	+display(//長得像美洲潛鴨)
+FlyWithWings
+	+fly()實作鴨子的飛行行為
 
-MallardDuck --> Duck
-RedheadDuck --> Duck
+FlyNoWay
+	+fly()什麼都不做因為不會飛
+
+Quack
+	+quack()實作鴨子的叫聲
+
+Squeak
+	+quack()橡皮鴨的啾啾聲
+
+MuteQuack
+	+quack()什麼都不做因為不會叫
+
+FlyWithWings --*> FlyBehavior
+FlyNoWay --*> FlyBehavior
+Quack --*> QuackBehavior
+Squeak --*> QuackBehavior
+MuteQuack --*> QuackBehavior
