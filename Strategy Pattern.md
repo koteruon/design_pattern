@@ -89,3 +89,8 @@ A: 在物件導向中，類別通常代表兼具狀態(實例變數)的方法的
 
 ---
 
+## 綜觀封裝行為
+
+![綜觀封裝行為](https://github.com/koteruon/design_pattern/blob/main/Strategy%20Pattern/%E7%B6%9C%E8%A7%80%E5%B0%81%E8%A3%9D%E8%A1%8C%E7%82%BA.png)
+
+1. 中間為封裝起來的飛行行為
