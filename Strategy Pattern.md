@@ -10,4 +10,19 @@
 
 ### 在抽象類別中增加一個Fly()行為
 
-* 缺點
+![抽象類別增加一個fly](https://github.com/koteruon/design_pattern/blob/main/Strategy%20Pattern/%E6%8A%BD%E8%B1%A1%E9%A1%9E%E5%88%A5%E5%A2%9E%E5%8A%A0%E4%B8%80%E5%80%8Bfly.png)
+
+**缺點**
+
+1. 有可能有一種鴨(橡皮鴨)不會飛
+2. 多一個子類又必須複寫一次fly這個行為(改為不會飛)
+
+> [!WARNING]
+> 局部修改程式碼，卻造成非局部性的影響！
+
+### 使用介面增加一個Flyable、Quackable
+
+![介面增加Flyable和Quackable](https://github.com/koteruon/design_pattern/blob/main/Strategy%20Pattern/%E4%BB%8B%E9%9D%A2%E5%A2%9E%E5%8A%A0Flyable%E5%92%8CQuackable.png)
+
+> [!TIP]
+> Optional information to help a user be more successful.
