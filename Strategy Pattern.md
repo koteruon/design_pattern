@@ -48,7 +48,7 @@
 
 **Duck類別裡有fly()和quack()會隨著鴨自不同而改變，所以抽出Duck類別，並建立一組類別來代表那些行為。**
 
-![針對介面寫程式(實作Duck行為)]()
+![針對介面寫程式(實作Duck行為)](https://github.com/koteruon/design_pattern/blob/main/Strategy%20Pattern/%E9%87%9D%E5%B0%8D%E4%BB%8B%E9%9D%A2%E5%AF%AB%E7%A8%8B%E5%BC%8F(%E5%AF%A6%E4%BD%9CDuck%E8%A1%8C%E7%82%BA).png)
 
 > [!TIP]
 > 針對介面寫程式，而不是針對實作寫程式
