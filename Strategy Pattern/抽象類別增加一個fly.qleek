@@ -1,0 +1,14 @@
+Duck
+	+quck()
+	+swim()
+	Abstract +display()
+	fly()
+
+MallardDuck
+	+display(//長得像綠頭鴨)
+
+RedheadDuck
+	+display(//長得像美洲潛鴨)
+
+MallardDuck --> Duck
+RedheadDuck --> Duck
