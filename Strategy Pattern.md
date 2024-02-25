@@ -46,7 +46,7 @@
 
 ### 把會變的部分和不變的部分分開
 
-**Duck類別裡有fly()和quack()會隨著鴨自不同而改變，所以抽出Duck類別，並建立一組類別來代表那些行為。**
+**Duck類別裡有fly()和quack()會隨著鴨自不同而改變，所以抽出Duck類別，並建立一組類別來代表那些行為。Duck就將飛行和鳴叫的行為*委託(delegate)*出去**
 
 ![針對介面寫程式(實作Duck行為)](https://github.com/koteruon/design_pattern/blob/main/Strategy%20Pattern/%E9%87%9D%E5%B0%8D%E4%BB%8B%E9%9D%A2%E5%AF%AB%E7%A8%8B%E5%BC%8F(%E5%AF%A6%E4%BD%9CDuck%E8%A1%8C%E7%82%BA).png)
 
@@ -93,4 +93,138 @@ A: 在物件導向中，類別通常代表兼具狀態(實例變數)的方法的
 
 ![綜觀封裝行為](https://github.com/koteruon/design_pattern/blob/main/Strategy%20Pattern/%E7%B6%9C%E8%A7%80%E5%B0%81%E8%A3%9D%E8%A1%8C%E7%82%BA.png)
 
-1. 中間為封裝起來的飛行行為
+### 程式碼
+
+1. 創建abstract class Duck，並宣告兩個行為介面型態的參考變數，鴨子子類都會繼承他們。
+
+```java
+public abstract class Duck {
+	FlyBehavior flyBehavior;
+	QuackBehavior quackBehavior;
+
+	public Duck() {
+	}
+
+	public void setFlyBehavior(FlyBehavior fb) { // 動態改變鴨子的行為
+		flyBehavior = fb;
+	}
+
+	public void setQuackBehavior(QuackBehavior qb) { // 動態改變鴨子的行為
+		quackBehavior = qb;
+	}
+
+	abstract void display();
+
+	public void performFly() {
+		flyBehavior.fly(); // 委託給行為類別
+	}
+
+	public void performQuack() {
+		quackBehavior.quack(); // 委託給行為類別
+	}
+
+	public void swim() {
+		System.out.println("All ducks float, even decoys!");
+	}
+}
+```
+
+2. FlyBehavior介面，並建立兩個行為實作類別
+
+```java
+public interface FlyBehavior {
+	public void fly();
+}
+
+//----------------------------------------------------------------
+
+public class FlyWithWings implements FlyBehavior {
+	public void fly() {
+		System.out.println("I'm flying!!");
+	}
+}
+
+//----------------------------------------------------------------
+
+public class FlyNoWay implements FlyBehavior {
+	public void fly() {
+		System.out.println("I can't fly");
+	}
+}
+
+//----------------------------------------------------------------
+
+public class FlyRocketPowered implements FlyBehavior { // 新增火箭的飛行模式
+	public void fly() {
+		System.out.println("I'm flying with a rocket");
+	}
+}
+
+
+```
+
+3. QuackBehavior介面，創建三個行為實作類別
+
+```java
+public interface QuackBehavior {
+	public void quack();
+}
+
+//----------------------------------------------------------------
+
+public class Quack implements QuackBehavior {
+	public void quack() {
+		System.out.println("Quack");
+	}
+}
+
+//----------------------------------------------------------------
+
+public class MuteQuack implements QuackBehavior {
+	public void quack() {
+		System.out.println("<< Silence >>");
+	}
+}
+
+//----------------------------------------------------------------
+
+public class Squeak implements QuackBehavior {
+	public void quack() {
+		System.out.println("Squeak");
+	}
+}
+```
+
+4. 製作新的Duck型態(ModelDuck)
+
+```java
+public class ModelDuck extends Duck {
+	public ModelDuck() {
+		flyBehavior = new FlyNoWay(); // 一開始的模型鴨是陸棲的，他不會飛
+		quackBehavior = new Quack();
+	}
+
+	public void display() {
+		System.out.println("I'm a model duck");
+	}
+}
+
+```
+
+5. 測試原本的ModelDuck，並動態加上火箭的飛行功能
+
+```java
+public class MiniDuckSimulator {
+	public static void main(String[] args) {
+		Duck	 model = new ModelDuck();
+		model.performFly();
+		model.setFlyBehavior(new FlyRocketPowered()); // 動態設定飛行方式
+		model.performFly();
+	}
+}
+
+```
+
+**要在執行期間改變鴨子的行為，你只需要呼叫鴨子的行為setter即可**
+
+---
