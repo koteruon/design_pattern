@@ -99,8 +99,8 @@ A: 在物件導向中，類別通常代表兼具狀態(實例變數)的方法的
 
 ```java
 public abstract class Duck {
-	FlyBehavior flyBehavior;
-	QuackBehavior quackBehavior;
+	FlyBehavior flyBehavior; //行為介面型態的參考變數
+	QuackBehavior quackBehavior; //行為介面型態的參考變數
 
 	public Duck() {
 	}
