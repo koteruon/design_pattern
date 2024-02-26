@@ -4,7 +4,7 @@
 
 ## 創建型模式篇 | Creational Patterns
 
--   [策略模式 Strategy Pattern](./Strategy Pattern/Strategy Pattern.md)
+-   [123](./Strategy Pattern/Strategy Pattern.md)
 
 ## 結構型模式篇 | Structural Patterns
 
