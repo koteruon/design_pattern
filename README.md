@@ -4,7 +4,7 @@
 
 ## 創建型模式篇 | Creational Patterns
 
--   [策略模式 Strategy Pattern](./Strategy Pattern/Strategy Pattern.md)
+* [策略模式 Strategy Pattern](https://github.com/koteruon/design_pattern/blob/main/Strategy%20Pattern/Strategy%20Pattern.md)
 
 ## 結構型模式篇 | Structural Patterns
 
