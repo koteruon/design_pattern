@@ -63,7 +63,8 @@ public void measurementsChanged() {
 
 > observer 有時又稱作 subscriber、listener
 
-> [!NOTE] > **觀察者模式**定義物件之間的一對多依賴關係，當一個物件改變狀態時，依賴它的物件都會自動收到通知和更新。
+> [!NOTE]
+> **觀察者模式**定義物件之間的一對多依賴關係，當一個物件改變狀態時，依賴它的物件都會自動收到通知和更新。
 
 ![發布者訂閱者](./%E7%99%BC%E5%B8%83%E8%80%85%E8%A8%82%E9%96%B1%E8%80%85.png)
 
@@ -84,6 +85,127 @@ public void measurementsChanged() {
 
 ### 程式碼實作
 
+1. 針對Subject建立介面，包和register、remove、notify
+2. 針對Observer建立介面，讓所有觀察者實作
+
+```java
+public interface Subject {
+	public void registerObserver(Observer o); // 接收Observer引數，註冊Observer
+	public void removeObserver(Observer o); // 接收Observer引數，移除Observer
+	public void notifyObservers(); // Subject改變時，這個方法會被呼叫，藉此通知觀察者
+}
+
+// ----------------------------------------------------------------
+
+public interface Observer {
+	public void update(float temp, float humidity, float pressure); // 這些測量數據改變時，Observer從Subject取得的狀態值
+}
+
+// ----------------------------------------------------------------
+
+public interface DisplayElement {
+	public void display(); // 想要顯示的元素時，呼叫他
+}
+```
+
+3. 讓WeatherData實作Subject介面
+
+```java
+public class WeatherData implements Subject {
+	private List<Observer> observers; // 保存觀察者的引用對象
+	private float temperature;
+	private float humidity;
+	private float pressure;
+
+	public WeatherData() {
+		observers = new ArrayList<Observer>();
+	}
+
+	public void registerObserver(Observer o) {
+		observers.add(o); //註冊時加入到List的最後
+	}
+
+	public void removeObserver(Observer o) {
+		observers.remove(o); // 退出時從List中移除
+	}
+
+	public void notifyObservers() {
+		for (Observer observer : observers) { // 所有觀察者皆實作update方法，在這裡將最新狀態傳給每一個觀察者
+			observer.update(temperature, humidity, pressure);
+		}
+	}
+
+	public void measurementsChanged() {
+		notifyObservers(); // 當氣象站取得新的資料時，通知Observer
+	}
+
+    public void setMeasurements(float temperature, float humidity, float pressure) { // 測試用，假設數據更新了
+		this.temperature = temperature;
+		this.humidity = humidity;
+		this.pressure = pressure;
+		measurementsChanged();
+	}
+
+	public float getTemperature() {
+		return temperature; // pull model使用
+	}
+
+	public float getHumidity() {
+		return humidity; // pull model使用
+	}
+
+	public float getPressure() {
+		return pressure; // pull model使用
+	}
+
+}
+
+```
+
+4. 取其中一個顯示元素當作例子，他實作Observer介面，可以從WeatherData物件收到變更。
+
+```java
+public class CurrentConditionsDisplay implements Observer, DisplayElement {
+	private float temperature;
+	private float humidity;
+	private WeatherData weatherData; // 未來想要退出訂閱時可以使用到(不一定要)
+
+	public CurrentConditionsDisplay(WeatherData weatherData) {
+		this.weatherData = weatherData;
+		weatherData.registerObserver(this); // 透過建構子，將畫面註冊為觀察者
+	}
+
+	public void update(float temperature, float humidity, float pressure) {
+		this.temperature = temperature;
+		this.humidity = humidity;
+		display(); // 在MVC的地方有更好的寫法
+	}
+
+	public void display() {
+		System.out.println("Current conditions: " + temperature
+			+ "F degrees and " + humidity + "% humidity");
+	}
+}
+```
+
+5. 寫一個測試項，確認訂閱會收到訊息，取消訂閱就不再收到訊息
+
+```java
+public class WeatherStation {
+
+	public static void main(String[] args) {
+		WeatherData weatherData = new WeatherData();
+
+		CurrentConditionsDisplay currentDisplay =
+			new CurrentConditionsDisplay(weatherData); // 透過建構子的方式，在方法裡面對Subject註冊自己
+
+		weatherData.setMeasurements(80, 65, 30.4f); //數據更新，會收到update，並display
+		weatherData.removeObserver(currentDisplay); //退出訂閱，不在收到通知
+		weatherData.setMeasurements(62, 90, 28.1f); //數據更新，不會收到update
+	}
+}
+```
+
 ## Pull Model / Pull Model
 
 * Push model
@@ -91,10 +213,46 @@ public void measurementsChanged() {
   * Subject要知道Observer需要什麼，彈性較差
   * Observer會接收到不必要的資料
   * 好處是不需要保留Subject的引用
+```java
+public class CurrentConditionsDisplay implements Observer, DisplayElement {
+	private float temperature;
+	private float humidity;
+
+	public void update(float temperature, float humidity, float pressure) { // Observer會接收到不必要的資料，例如pressure
+		this.temperature = temperature;
+		this.humidity = humidity;
+		display();
+	}
+
+	public void display() {...}
+}
+```
+
 * Pull model
   * 提供必要的資料或其來源(如 data id 或 subject本身)給Observer，由Observer自行取得相對關資料
   * 每個Observer都要重新取得資料，效率較差
   * 壞處是需要保留Subject的引用
+```java
+// Subject
+public void notifyObservers() {
+    for (Observer observer : observers) {
+        observer.update(); // 不傳遞參數
+    }
+}
+
+// ----------------------------------------------------------------
+
+// Object interface
+public interface Observer {
+	public void update(); // 沒有參數
+}
+// Object
+public void update() {
+    this.temperature = weatherData.getTemperature();
+    this.humidity = weatherData.getHumidity();
+    display();
+}
+```
 
 ## 觀察者模式(Observer Pattern) vs 發布/訂閱模式(Publish/Subscribe Pattern)
 
