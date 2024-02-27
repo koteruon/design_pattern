@@ -138,8 +138,7 @@ public class WeatherData implements Subject {
 		notifyObservers(); // 當氣象站取得新的資料時，通知Observer
 	}
 
-	public void setMeasurements(float temperature, float humidity, float pressure) {
-        // 測試用，假設數據更新了
+	public void setMeasurements(float temperature, float humidity, float pressure) {// 測試用，假設數據更新了
 		this.temperature = temperature;
 		this.humidity = humidity;
 		this.pressure = pressure;
