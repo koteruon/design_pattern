@@ -35,9 +35,9 @@
 
 ```java
 public void measurementsChanged() {
-    float temperature = getTemperature;
-    float humidity = getHumidity;
-    float pressure = getPressure;
+    float temperature = getTemperature();
+    float humidity = getHumidity();
+    float pressure = getPressure();
 
     /* 看起來下面這段式會改變的，需要封裝起來 */
     currentConditionsDisplay.update(temperature, humidity, pressure); // 傳入參數未來會越來越多
@@ -76,4 +76,4 @@ public void measurementsChanged() {
 
 ### 使用觀察模式後的設計
 
-
+![設計氣象站](./%E8%A8%AD%E8%A8%88%E6%B0%A3%E8%B1%A1%E7%AB%99.png)
