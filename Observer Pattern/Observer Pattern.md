@@ -74,4 +74,6 @@ public void measurementsChanged() {
 > [!TIP]
 > 努力為彼此互動的物件做出鬆耦合的設計
 
+### 使用觀察模式後的設計
+
 
