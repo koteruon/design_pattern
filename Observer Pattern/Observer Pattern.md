@@ -296,4 +296,4 @@ public void update() {
 ![ChangeManager](./%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fplus%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F.gif)
 
 -   當一個觀察者觀察多個目標時，DAGChangeManager 要更好用一些，他可以保證觀察者僅接受一個更新，而不會接受到多個冗余的更新。
--   當不存在重複更新時，SimpleChangeManager。
+-   當不存在重複更新時，使用SimpleChangeManager。
