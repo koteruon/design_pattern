@@ -28,6 +28,10 @@
 
 :x:**缺點**
 
+1. 若算法極少發生改變，沒有理由引入新的類和介面，會使程序更為複雜
+2. 客戶端必須知道策略間的不同，因為要選擇合適的策略
+3. 許多程式語言支持函數類型，允許在匿名函數中實現不同版本的算法。這些函數就和使用策略對象完全相同，無須借助額外的類和介面來保持程式乾淨。
+
 ## 原始的模型架構
 
 有一個鴨子模擬遊戲，稱作SimUDuck，裡面的定義了一個Duck超類別，讓所有品種的鴨子來繼承他。
@@ -256,7 +260,7 @@ public class ModelDuck extends Duck {
 ```java
 public class MiniDuckSimulator {
 	public static void main(String[] args) {
-		Duck	 model = new ModelDuck();
+		Duck model = new ModelDuck();
 		model.performFly();
 		model.setFlyBehavior(new FlyRocketPowered()); // 動態設定飛行方式
 		model.performFly();
@@ -268,3 +272,55 @@ public class MiniDuckSimulator {
 **要在執行期間改變鴨子的行為，你只需要呼叫鴨子的行為setter即可**
 
 ---
+
+## Java 使用 Lamda 簡化策略模式
+
+1. 定義Context記錄指向算法的實例
+
+```java
+public class Context {
+	private final Operation operation;
+
+	public Context(Operation operation) {
+		this.operation = operation;
+	}
+
+	public int getResult(int num1, int num2) {
+		return operation.doSomething(num1, num2);
+	}
+}
+
+```
+
+2. 定義函數是介面，注意要加上**@FunctionalInterface**
+
+```java
+// 函數式介面就是只有一個抽象方法的介面
+// 在策略模式中的算法，就是一個函數式介面
+// 此處標註了介面為一個函數式介面，如果介面定義了多個抽象方法，會在編譯時期報錯
+
+@FunctionalInterface
+public interface Operation {
+	int doSomething(int num1, int num2);
+}
+```
+
+3. 測試利用不同的算法得到不同的結果
+
+```java
+public class Test {
+	public static void main(String[] args) {
+		Context context = new Context(((num1, num2) -> num1 + num2)) // 設定加法算法
+		System.out.println("1 + 1 = " + context.getResult(1,1)); // 1 + 1 = 2
+		Context context = new Context(((num1, num2) -> num1 - num2)) // 設定加法算法
+		System.out.println("1 - 1 = " + context.getResult(1,1)); // 1 - 1 = 0
+		Context context = new Context(((num1, num2) -> num1 * num2)) // 設定加法算法
+		System.out.println("1 * 1 = " + context.getResult(1,1)); // 1 * 1 = 1
+		Context context = new Context(((num1, num2) -> num1 / num2)) // 設定加法算法
+		System.out.println("1 / 1 = " + context.getResult(1,1)); // 1 / 1 = 1
+	}
+}
+```
+
+
+
