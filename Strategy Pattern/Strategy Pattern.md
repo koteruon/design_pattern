@@ -312,11 +312,11 @@ public class Test {
 	public static void main(String[] args) {
 		Context context = new Context(((num1, num2) -> num1 + num2)) // 設定加法算法
 		System.out.println("1 + 1 = " + context.getResult(1,1)); // 1 + 1 = 2
-		Context context = new Context(((num1, num2) -> num1 - num2)) // 設定加法算法
+		Context context = new Context(((num1, num2) -> num1 - num2)) // 設定減法算法
 		System.out.println("1 - 1 = " + context.getResult(1,1)); // 1 - 1 = 0
-		Context context = new Context(((num1, num2) -> num1 * num2)) // 設定加法算法
+		Context context = new Context(((num1, num2) -> num1 * num2)) // 設定乘法算法
 		System.out.println("1 * 1 = " + context.getResult(1,1)); // 1 * 1 = 1
-		Context context = new Context(((num1, num2) -> num1 / num2)) // 設定加法算法
+		Context context = new Context(((num1, num2) -> num1 / num2)) // 設定除法算法
 		System.out.println("1 / 1 = " + context.getResult(1,1)); // 1 / 1 = 1
 	}
 }
