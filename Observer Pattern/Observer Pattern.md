@@ -23,6 +23,8 @@
 :x:**缺點**
 
 1. 觀察者的通知順序是隨機的
+2. 觀察者很多的時候，通知所有觀察者會很花時間
+3. 如果觀察者和觀察目標之間有**循環依賴**，可能導致系統崩潰
 
 ## 原始的模型架構與需求
 
@@ -77,3 +79,13 @@ public void measurementsChanged() {
 ### 使用觀察模式後的設計
 
 ![設計氣象站](./%E8%A8%AD%E8%A8%88%E6%B0%A3%E8%B1%A1%E7%AB%99.png)
+
+### 程式碼時做
+
+### 觀察者模式(Observer Pattern) vs 發布/訂閱模式(Publish/Subscribe Pattern)
+
+比較 |觀察者模式(Observer Pattern)| 發布/訂閱模式(Publish/Subscribe Pattern)
+模式類別 | Design Pattern | Messaging Pattern
+知道對方 | 觀察者知道Subject的，Subject也一直保持對觀察者進行記錄 | 發布者和訂閱者不知道對方的存在，只透過消息代理進行通訊
+耦合性 | 相對耦合 | 組件是鬆散耦合
+同步 | 大多是同步的 | 大多是異步的(消息對列)
