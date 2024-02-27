@@ -110,6 +110,8 @@ public void measurementsChanged() {
 > [!WARNING]
 > 一般的觀察者模式Subject仍需要保留Observer的引用，無法真正解偶
 
+![觀察者模式 + 中介者模式](./%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fplus%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F.png)
+
 1. **封裝複雜的更新語意**。當目標與觀察者的依賴關係特別複雜時，可能需要一個維護這些關係的對象，稱作**更改管理器(ChangeManager)**。
 2. ChangeManager是一個Mediator(中介者)模式的實例，通常是一個Singleleton(單例)
 
@@ -118,6 +120,7 @@ public void measurementsChanged() {
 2. 定義一個特定的更新策略
 3. 根據一個目標請求，更新所有依賴於這個目標的觀察者
 
+![ChangeManager](./%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fplus%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F.gif)
 
 * 當一個觀察者觀察多個目標時，DAGChangeManager要更好用一些，他可以保證觀察者僅接受一個更新，而不會接受到多個冗余的更新。
 * 當不存在重複更新時，SimpleChangeManager。
