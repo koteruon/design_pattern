@@ -25,6 +25,7 @@
 1. 觀察者的通知順序是隨機的
 2. 觀察者很多的時候，通知所有觀察者會很花時間
 3. 如果觀察者和觀察目標之間有**循環依賴**，可能導致系統崩潰
+4. 觀察者不知道其他觀察者的存在，依賴準則的定義或維護不當，容易引起錯誤的更新
 
 ## 原始的模型架構與需求
 
@@ -83,7 +84,17 @@ public void measurementsChanged() {
 
 ### 程式碼實作
 
-## 觀察者
+## Pull Model / Pull Model
+
+* Push model
+  * 推送所有資料給Observer
+  * Subject要知道Observer需要什麼，彈性較差
+  * Observer會接收到不必要的資料
+  * 好處是不需要保留Subject的引用
+* Pull model
+  * 提供必要的資料或其來源(如 data id 或 subject本身)給Observer，由Observer自行取得相對關資料
+  * 每個Observer都要重新取得資料，效率較差
+  * 壞處是需要保留Subject的引用
 
 ## 觀察者模式(Observer Pattern) vs 發布/訂閱模式(Publish/Subscribe Pattern)
 
@@ -94,9 +105,31 @@ public void measurementsChanged() {
 |  耦合性  |                         相對耦合                          |                     組件是鬆散耦合                     |
 |   同步   |                  大多是同步(synchronous)                  |           大多是異步(asynchronous)(消息對列)           |
 
+### 觀察者模式 + 中介者模式
+
+> [!WARNING]
+> 一般的觀察者模式Subject仍需要保留Observer的引用，無法真正解偶
+
+1. **封裝複雜的更新語意**。當目標與觀察者的依賴關係特別複雜時，可能需要一個維護這些關係的對象，稱作**更改管理器(ChangeManager)**。
+2. ChangeManager是一個Mediator(中介者)模式的實例，通常是一個Singleleton(單例)
+
+**ChangeManager有三個職責：**
+1. 將一個Subject映射到他的觀察者，並提供一個介面來維護這個映射，這就不用由Subject來維護對觀察者的引用
+2. 定義一個特定的更新策略
+3. 根據一個目標請求，更新所有依賴於這個目標的觀察者
+
+
+* 當一個觀察者觀察多個目標時，DAGChangeManager要更好用一些，他可以保證觀察者僅接受一個更新，而不會接受到多個冗余的更新。
+* 當不存在重複更新時，SimpleChangeManager。
+
+
 ### 發布/訂閱模式
 
-1. 模組的解偶
-    > <font color=#0000FF>發佈者(Publisher)</font>和<font color=#FFD700>訂閱者(Subscriber)</font>之間，透過<font color=#FF0000>中間人(broker)</font>或Message/Event Bus來解偶
+![發布/訂閱模式](./%E7%99%BC%E4%BD%88%E8%A8%82%E9%96%B1%E6%A8%A1%E5%BC%8F.png?raw=true)
 
-2.
+1. 模組的解偶
+    > 發佈者(Publisher)和訂閱者(Subscriber)之間，透過中間人(broker)或Message/Event Bus來解偶
+    > 就像訂閱某個粉專，訂閱者不需要知道發文的小編是誰
+
+2. 時間的解偶
+    > 發佈訊息時，訂閱者不一定在線上，採用先存再送(store-and-forward)的機制
