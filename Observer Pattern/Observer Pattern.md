@@ -247,6 +247,7 @@ public void notifyObservers() {
 public interface Observer {
 	public void update(); // 沒有參數
 }
+
 // Object
 public void update() {
     this.temperature = weatherData.getTemperature();
