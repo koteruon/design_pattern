@@ -63,8 +63,7 @@ public void measurementsChanged() {
 
 > observer 有時又稱作 subscriber、listener
 
-> [!NOTE]
-> **觀察者模式**定義物件之間的一對多依賴關係，當一個物件改變狀態時，依賴它的物件都會自動收到通知和更新。
+> [!NOTE] > **觀察者模式**定義物件之間的一對多依賴關係，當一個物件改變狀態時，依賴它的物件都會自動收到通知和更新。
 
 ![發布者訂閱者](./%E7%99%BC%E5%B8%83%E8%80%85%E8%A8%82%E9%96%B1%E8%80%85.png)
 
@@ -85,8 +84,8 @@ public void measurementsChanged() {
 
 ### 程式碼實作
 
-1. 針對Subject建立介面，包和register、remove、notify
-2. 針對Observer建立介面，讓所有觀察者實作
+1. 針對 Subject 建立介面，包和 register、remove、notify
+2. 針對 Observer 建立介面，讓所有觀察者實作
 
 ```java
 public interface Subject {
@@ -108,7 +107,7 @@ public interface DisplayElement {
 }
 ```
 
-3. 讓WeatherData實作Subject介面
+3. 讓 WeatherData 實作 Subject 介面
 
 ```java
 public class WeatherData implements Subject {
@@ -162,7 +161,7 @@ public class WeatherData implements Subject {
 
 ```
 
-4. 取其中一個顯示元素當作例子，他實作Observer介面，可以從WeatherData物件收到變更。
+4. 取其中一個顯示元素當作例子，他實作 Observer 介面，可以從 WeatherData 物件收到變更。
 
 ```java
 public class CurrentConditionsDisplay implements Observer, DisplayElement {
@@ -208,11 +207,12 @@ public class WeatherStation {
 
 ## Pull Model / Pull Model
 
-* Push model
-  * 推送所有資料給Observer
-  * Subject要知道Observer需要什麼，彈性較差
-  * Observer會接收到不必要的資料
-  * 好處是不需要保留Subject的引用
+-   Push model
+    -   推送所有資料給 Observer
+    -   Subject 要知道 Observer 需要什麼，彈性較差
+    -   Observer 會接收到不必要的資料
+    -   好處是不需要保留 Subject 的引用
+
 ```java
 public class CurrentConditionsDisplay implements Observer, DisplayElement {
 	private float temperature;
@@ -228,10 +228,11 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
 }
 ```
 
-* Pull model
-  * 提供必要的資料或其來源(如 data id 或 subject本身)給Observer，由Observer自行取得相對關資料
-  * 每個Observer都要重新取得資料，效率較差
-  * 壞處是需要保留Subject的引用
+-   Pull model
+    -   提供必要的資料或其來源(如 data id 或 subject 本身)給 Observer，由 Observer 自行取得相對關資料
+    -   每個 Observer 都要重新取得資料，效率較差
+    -   壞處是需要保留 Subject 的引用
+
 ```java
 // Subject
 public void notifyObservers() {
@@ -268,7 +269,8 @@ public void update() {
 ![發布/訂閱模式](./%E7%99%BC%E4%BD%88%E8%A8%82%E9%96%B1%E6%A8%A1%E5%BC%8F.png?raw=true)
 
 1. 模組的解偶
-    > 發佈者(Publisher)和訂閱者(Subscriber)之間，透過中間人(broker)或Message/Event Bus來解偶
+
+    > 發佈者(Publisher)和訂閱者(Subscriber)之間，透過中間人(broker)或 Message/Event Bus 來解偶
     > 就像訂閱某個粉專，訂閱者不需要知道發文的小編是誰
 
 2. 時間的解偶
@@ -277,19 +279,20 @@ public void update() {
 ## 觀察者模式 + 中介者模式
 
 > [!WARNING]
-> 一般的觀察者模式Subject仍需要保留Observer的引用，無法真正解偶
+> 一般的觀察者模式 Subject 仍需要保留 Observer 的引用，無法真正解偶
 
 ![觀察者模式 + 中介者模式](./%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fplus%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F.png)
 
 1. **封裝複雜的更新語意**。當目標與觀察者的依賴關係特別複雜時，可能需要一個維護這些關係的對象，稱作**更改管理器(ChangeManager)**。
-2. ChangeManager是一個Mediator(中介者)模式的實例，通常是一個Singleleton(單例)
+2. ChangeManager 是一個 Mediator(中介者)模式的實例，通常是一個 Singleleton(單例)
 
-**ChangeManager有三個職責：**
-1. 將一個Subject映射到他的觀察者，並提供一個介面來維護這個映射，這就不用由Subject來維護對觀察者的引用
+**ChangeManager 有三個職責：**
+
+1. 將一個 Subject 映射到他的觀察者，並提供一個介面來維護這個映射，這就不用由 Subject 來維護對觀察者的引用
 2. 定義一個特定的更新策略
 3. 根據一個目標請求，更新所有依賴於這個目標的觀察者
 
 ![ChangeManager](./%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fplus%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F.gif)
 
-* 當一個觀察者觀察多個目標時，DAGChangeManager要更好用一些，他可以保證觀察者僅接受一個更新，而不會接受到多個冗余的更新。
-* 當不存在重複更新時，SimpleChangeManager。
+-   當一個觀察者觀察多個目標時，DAGChangeManager 要更好用一些，他可以保證觀察者僅接受一個更新，而不會接受到多個冗余的更新。
+-   當不存在重複更新時，SimpleChangeManager。
