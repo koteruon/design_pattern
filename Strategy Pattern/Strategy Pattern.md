@@ -292,7 +292,7 @@ public class Context {
 
 ```
 
-2. 定義函數是介面，注意要加上**@FunctionalInterface**
+2. 定義函數是介面，注意要加上 **@FunctionalInterface**
 
 ```java
 // 函數式介面就是只有一個抽象方法的介面
