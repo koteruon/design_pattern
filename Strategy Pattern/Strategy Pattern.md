@@ -4,7 +4,7 @@
 
 ### 策略模式結構
 
-![策略模式結構](./Strategy%20Pattern/%E6%A8%A1%E5%BC%8F%E7%B5%90%E6%A7%8B.png)
+![策略模式結構](./%E6%A8%A1%E5%BC%8F%E7%B5%90%E6%A7%8B.png)
 
 ### 策略模式適合的應用場景
 
@@ -32,13 +32,13 @@
 
 有一個鴨子模擬遊戲，稱作SimUDuck，裡面的定義了一個Duck超類別，讓所有品種的鴨子來繼承他。
 
-![原始APP的樣貌](./Strategy%20Pattern/%E5%8E%9F%E5%A7%8BAPP%E7%9A%84%E6%A8%A3%E8%B2%8C.png)
+![原始APP的樣貌](./%E5%8E%9F%E5%A7%8BAPP%E7%9A%84%E6%A8%A3%E8%B2%8C.png)
 
 ## 需求增加一個會飛的行為
 
 ### 在抽象類別中增加一個Fly()行為
 
-![抽象類別增加一個fly](./Strategy%20Pattern/%E6%8A%BD%E8%B1%A1%E9%A1%9E%E5%88%A5%E5%A2%9E%E5%8A%A0%E4%B8%80%E5%80%8Bfly.png)
+![抽象類別增加一個fly](./%E6%8A%BD%E8%B1%A1%E9%A1%9E%E5%88%A5%E5%A2%9E%E5%8A%A0%E4%B8%80%E5%80%8Bfly.png)
 
 **缺點**
 
@@ -50,7 +50,7 @@
 
 ### 使用介面增加一個Flyable、Quackable
 
-![介面增加Flyable和Quackable](./Strategy%20Pattern/%E4%BB%8B%E9%9D%A2%E5%A2%9E%E5%8A%A0Flyable%E5%92%8CQuackable.png)
+![介面增加Flyable和Quackable](./%E4%BB%8B%E9%9D%A2%E5%A2%9E%E5%8A%A0Flyable%E5%92%8CQuackable.png)
 
 **缺點**
 
@@ -76,7 +76,7 @@
 
 **Duck類別裡有fly()和quack()會隨著鴨自不同而改變，所以抽出Duck類別，並建立一組類別來代表那些行為。Duck就將飛行和鳴叫的行為** *委託(delegate)* **出去**
 
-![針對介面寫程式(實作Duck行為)](./Strategy%20Pattern/%E9%87%9D%E5%B0%8D%E4%BB%8B%E9%9D%A2%E5%AF%AB%E7%A8%8B%E5%BC%8F(%E5%AF%A6%E4%BD%9CDuck%E8%A1%8C%E7%82%BA).png)
+![針對介面寫程式(實作Duck行為)](./%E9%87%9D%E5%B0%8D%E4%BB%8B%E9%9D%A2%E5%AF%AB%E7%A8%8B%E5%BC%8F(%E5%AF%A6%E4%BD%9CDuck%E8%A1%8C%E7%82%BA).png)
 
 > [!TIP]
 > 針對介面寫程式，而不是針對實作寫程式
@@ -122,7 +122,7 @@ A: 在物件導向中，類別通常代表兼具狀態(實例變數)的方法的
 
 ## 綜觀封裝行為
 
-![綜觀封裝行為](./Strategy%20Pattern/%E7%B6%9C%E8%A7%80%E5%B0%81%E8%A3%9D%E8%A1%8C%E7%82%BA.png)
+![綜觀封裝行為](./%E7%B6%9C%E8%A7%80%E5%B0%81%E8%A3%9D%E8%A1%8C%E7%82%BA.png)
 
 ### HAS-A 有時比 IS-A 還要好
 
