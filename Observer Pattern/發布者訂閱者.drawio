@@ -1,0 +1,113 @@
+<mxfile host="app.diagrams.net" modified="2024-02-27T03:16:36.462Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="yaCnOegjZa9bXU0rV0xb" version="23.1.7" type="device">
+  <diagram name="第 1 页" id="63JafF3Ur42kXOqW8o8p">
+    <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-7" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="50" width="300" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-2" value="Subject 物件" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="120" y="240" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-3" value="用Subject物件管理重要資料" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="200" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-4" value="Dog 物件" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="420" y="140" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-5" value="Cat 物件" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="420" y="240" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-6" value="Mouse 物件" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="420" y="340" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-9" value="觀察者物件" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="440" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-10" value="Duck 物件" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="120" y="360" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-11" value="非觀察者物件" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="440" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="kqAyGP_JtS3tcXYnthJO-2" target="kqAyGP_JtS3tcXYnthJO-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="410" as="sourcePoint" />
+            <mxPoint x="440" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="kqAyGP_JtS3tcXYnthJO-2" target="kqAyGP_JtS3tcXYnthJO-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="290" as="sourcePoint" />
+            <mxPoint x="430" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-14" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="kqAyGP_JtS3tcXYnthJO-2" target="kqAyGP_JtS3tcXYnthJO-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="280" as="sourcePoint" />
+            <mxPoint x="440" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-16" value="2" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="210" y="210" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-17" value="2" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="210" y="255" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-18" value="2" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="210" y="300" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-19" value="觀察者向Subject訂閱(註冊)，&lt;br&gt;才能在Subject資料更新時收到更新" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="530" y="80" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-20" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=0.88;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="kqAyGP_JtS3tcXYnthJO-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="620" y="110" as="sourcePoint" />
+            <mxPoint x="580" y="160" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="570" y="110" />
+              <mxPoint x="620" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-21" value="當Subject資料改變，&lt;br&gt;觀察者就會收到通知，&lt;br&gt;並用某種形式將新資料傳給觀察者" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="120" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-22" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.218;exitY=0.933;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="kqAyGP_JtS3tcXYnthJO-3" target="kqAyGP_JtS3tcXYnthJO-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="80" y="220" as="sourcePoint" />
+            <mxPoint x="130" y="180" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="140" y="230" />
+              <mxPoint x="60" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-23" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=0.412;entryY=1.067;entryDx=0;entryDy=0;exitX=0.218;exitY=0.933;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" target="kqAyGP_JtS3tcXYnthJO-16">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="197" y="158" as="sourcePoint" />
+            <mxPoint x="240" y="210" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="260" y="160" />
+              <mxPoint x="220" y="225" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-24" value="不是觀察者，&lt;br&gt;所以Subject資料改變時，&lt;br&gt;不會收到通知" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="225" y="400" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kqAyGP_JtS3tcXYnthJO-25" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kqAyGP_JtS3tcXYnthJO-24" target="kqAyGP_JtS3tcXYnthJO-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="390" as="sourcePoint" />
+            <mxPoint x="190" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="190" y="408" />
+              <mxPoint x="240" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
