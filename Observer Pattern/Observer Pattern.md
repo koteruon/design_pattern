@@ -105,7 +105,18 @@ public void measurementsChanged() {
 |  耦合性  |                         相對耦合                          |                     組件是鬆散耦合                     |
 |   同步   |                  大多是同步(synchronous)                  |           大多是異步(asynchronous)(消息對列)           |
 
-### 觀察者模式 + 中介者模式
+### 發布/訂閱模式
+
+![發布/訂閱模式](./%E7%99%BC%E4%BD%88%E8%A8%82%E9%96%B1%E6%A8%A1%E5%BC%8F.png?raw=true)
+
+1. 模組的解偶
+    > 發佈者(Publisher)和訂閱者(Subscriber)之間，透過中間人(broker)或Message/Event Bus來解偶
+    > 就像訂閱某個粉專，訂閱者不需要知道發文的小編是誰
+
+2. 時間的解偶
+    > 發佈訊息時，訂閱者不一定在線上，採用先存再送(store-and-forward)的機制
+
+## 觀察者模式 + 中介者模式
 
 > [!WARNING]
 > 一般的觀察者模式Subject仍需要保留Observer的引用，無法真正解偶
@@ -124,15 +135,3 @@ public void measurementsChanged() {
 
 * 當一個觀察者觀察多個目標時，DAGChangeManager要更好用一些，他可以保證觀察者僅接受一個更新，而不會接受到多個冗余的更新。
 * 當不存在重複更新時，SimpleChangeManager。
-
-
-### 發布/訂閱模式
-
-![發布/訂閱模式](./%E7%99%BC%E4%BD%88%E8%A8%82%E9%96%B1%E6%A8%A1%E5%BC%8F.png?raw=true)
-
-1. 模組的解偶
-    > 發佈者(Publisher)和訂閱者(Subscriber)之間，透過中間人(broker)或Message/Event Bus來解偶
-    > 就像訂閱某個粉專，訂閱者不需要知道發文的小編是誰
-
-2. 時間的解偶
-    > 發佈訊息時，訂閱者不一定在線上，採用先存再送(store-and-forward)的機制
