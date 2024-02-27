@@ -17,7 +17,7 @@
 
 :o:**優點**
 
-1. 開放封閉原則。無須修改Subject程式，就可以引入新的觀察者類別(如果是Subject介面則可輕鬆引入Subject類)
+1. 開放封閉原則。無須修改 Subject 程式，就可以引入新的觀察者類別(如果是 Subject 介面則可輕鬆引入 Subject 類)
 2. 可以在執行期間建立對象之間的關係
 
 :x:**缺點**
@@ -28,7 +28,7 @@
 
 ## 原始的模型架構與需求
 
-1. 我們有一個weatherData，他儲存氣象局最新的測量數據(氣溫、濕度、溫度)，每當他改變的時候，我們的數值就要改變
+1. 我們有一個 weatherData，他儲存氣象局最新的測量數據(氣溫、濕度、溫度)，每當他改變的時候，我們的數值就要改變
 2. 我們有多個畫面(目前的天氣、統計數據、天氣預測...)
 
 ![原始的模型架構](./%E5%8E%9F%E5%A7%8B%E7%9A%84%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%A7%8B.png)
@@ -48,6 +48,7 @@ public void measurementsChanged() {
     // 寫成具體實作後，我們就無法在不修改程式的情況下，加入或移除其他元素
 }
 ```
+
 > [!WARNING]
 > 傳入參數未來可能會越來越多
 
@@ -58,20 +59,20 @@ public void measurementsChanged() {
 > 違反開放封閉原則，我們就無法在不修改程式的情況下，加入或移除其他元素
 
 ### 對象(SUBJECT) + 觀察者(OBSERVER) = 觀察者模式
-> observer有時又稱作subscriber、listener
 
-> [!NOTE]
-> **觀察者模式**定義物件之間的一對多依賴關係，當一個物件改變狀態時，依賴它的物件都會自動收到通知和更新。
+> observer 有時又稱作 subscriber、listener
+
+> [!NOTE] > **觀察者模式**定義物件之間的一對多依賴關係，當一個物件改變狀態時，依賴它的物件都會自動收到通知和更新。
 
 ![發布者訂閱者](./%E7%99%BC%E5%B8%83%E8%80%85%E8%A8%82%E9%96%B1%E8%80%85.png)
 
 ### 觀察者模式是鬆耦合
 
-1. Subject只知道觀察者實作了某個介面(Observer介面)
+1. Subject 只知道觀察者實作了某個介面(Observer 介面)
 2. 我們可以隨時加入新的觀察者
-3. 如果要加入新的觀察者類型，我們完全不需要修改Subject
-4. 可以重複利用Subject或觀察者，又不會影響到對方
-5. 修改Subject或觀察者，都不會影響到對方
+3. 如果要加入新的觀察者類型，我們完全不需要修改 Subject
+4. 可以重複利用 Subject 或觀察者，又不會影響到對方
+5. 修改 Subject 或觀察者，都不會影響到對方
 
 > [!TIP]
 > 努力為彼此互動的物件做出鬆耦合的設計
@@ -80,12 +81,22 @@ public void measurementsChanged() {
 
 ![設計氣象站](./%E8%A8%AD%E8%A8%88%E6%B0%A3%E8%B1%A1%E7%AB%99.png)
 
-### 程式碼時做
+### 程式碼實作
 
-### 觀察者模式(Observer Pattern) vs 發布/訂閱模式(Publish/Subscribe Pattern)
+## 觀察者
 
-比較 |觀察者模式(Observer Pattern)| 發布/訂閱模式(Publish/Subscribe Pattern)
-模式類別 | Design Pattern | Messaging Pattern
-知道對方 | 觀察者知道Subject的，Subject也一直保持對觀察者進行記錄 | 發布者和訂閱者不知道對方的存在，只透過消息代理進行通訊
-耦合性 | 相對耦合 | 組件是鬆散耦合
-同步 | 大多是同步的 | 大多是異步的(消息對列)
+## 觀察者模式(Observer Pattern) vs 發布/訂閱模式(Publish/Subscribe Pattern)
+
+|   比較   |               觀察者模式(Observer Pattern)                |        發布/訂閱模式(Publish/Subscribe Pattern)        |
+| :------: | :-------------------------------------------------------: | :----------------------------------------------------: |
+| 模式類別 |                      Design Pattern                       |                   Messaging Pattern                    |
+| 知道對方 | 觀察者知道 Subject 的，Subject 也一直保持對觀察者進行記錄 | 發布者和訂閱者不知道對方的存在，只透過消息代理進行通訊 |
+|  耦合性  |                         相對耦合                          |                     組件是鬆散耦合                     |
+|   同步   |                  大多是同步(synchronous)                  |           大多是異步(asynchronous)(消息對列)           |
+
+### 發布/訂閱模式
+
+1. 模組的解偶
+    > <font color=#0000FF>發佈者(Publisher)</font>和<font color=#FFD700>訂閱者(Subscriber)</font>之間，透過<font color=#FF0000>中間人(broker)</font>或Message/Event Bus來解偶
+
+2.
