@@ -285,7 +285,7 @@ public void update() {
 ![觀察者模式 + 中介者模式](./%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fplus%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F.png)
 
 1. **封裝複雜的更新語意**。當目標與觀察者的依賴關係特別複雜時，可能需要一個維護這些關係的對象，稱作**更改管理器(ChangeManager)**。
-2. ChangeManager 是一個 Mediator(中介者)模式的實例，通常是一個 Singleleton(單例)
+2. ChangeManager 是一個 Mediator(中介者)模式的實例，通常是一個 Singleton(單例)
 
 **ChangeManager 有三個職責：**
 
@@ -296,4 +296,85 @@ public void update() {
 ![ChangeManager](./%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fplus%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F.gif)
 
 -   當一個觀察者觀察多個目標時，DAGChangeManager 要更好用一些，他可以保證觀察者僅接受一個更新，而不會接受到多個冗余的更新。
--   當不存在重複更新時，使用SimpleChangeManager。
+-   當不存在重複更新時，使用 SimpleChangeManager。
+
+1. 建立 ChangeManager 介面
+
+```java
+public interface ChangeManager {
+
+	public abstract void register(Subject subject, Observer observer);
+
+	public abstract void unregister(Subject subject, Observer observer);
+
+	public abstract void notifyObservers(Subject subject);
+
+}
+```
+
+2. 實現 SimpleChangeManager
+
+```java
+public class SimpleChangeManager implements ChangeManager { // 通常會做成Singleton
+
+	Map<Subject, List<Observer>> mapping; // 記錄每一個Subject對應多個的Observer
+
+	public SimpleChangeManager(){
+		mapping = new HashMap<Subject, List<Observer>>();
+	}
+
+	@Override
+	public void register(Subject subject, Observer observer){
+		if(mapping.containsKey(subject)){
+			mapping.get(subject).add(observer);
+		}
+		else{
+			mapping.put(subject, new ArrayList<Observer>(Arrays.asList(observer)));
+		}
+	}
+
+	@Override
+	public void unregister(Subject subject, Observer observer){
+		if(mapping.containsKey(subject)){
+			if(mapping.get(subject).contains(observer)){
+				mapping.get(subject).remove(observer);
+			}
+		}
+	}
+
+	@Override
+	public void notifyObservers(Subject subject){
+		for (Observer observer : mapping.get(subject)) {
+			observer.update(subject);
+		}
+	}
+}
+```
+
+3. 實現 Subject 類別，並保留 ChangeManager 實例的引用
+
+```java
+public class ConcreteSubjectWithChangeManager implements Subject {
+
+	private ChangeManager changeManager; // 保留 ChangeManager 實例的引用
+
+	public ConcreteSubjectWithChangeManager(ChangeManager changeManager) {
+		this.changeManager = changeManager;
+	}
+
+	@Override
+	public void registerObserver(Observer observer) {
+		changeManager.register(this, observer);
+	}
+
+	@Override
+	public void removeObserver(Observer observer) {
+		changeManager.unregister(this, observer);
+	}
+
+	@Override
+	public void notifyObservers() {
+		changeManager.notifyObservers(this);
+	}
+}
+```
