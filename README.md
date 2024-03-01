@@ -12,6 +12,9 @@
 
 ## 結構型模式篇 | Structural Patterns
 
+* [裝飾器模式 Decorator Pattern](./Decorator%20Pattern/Decorator%20Pattern.md)
+    > 裝飾器模式是一種結構型設計模式，可以動態地為物件附加額外的職責。
+
 ## 行為型模式篇 | Behavioural Patterns
 
 ## 番外篇
