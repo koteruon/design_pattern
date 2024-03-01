@@ -57,7 +57,9 @@
 
 > [!TIP]
 > 類別應該歡迎擴展，但拒絕修改
+>
 > Classes should be open for extension, but closed for modification.
+>
 > 類別應該對擴展開放，對修改封閉
 
 ### 沒有蠢問題
@@ -72,3 +74,5 @@ A: 這通常不可能做到。一般來說，我們沒有那麼多資源可以�
 ## 裝飾器概念
 
 ![裝飾器概念](./%E8%A3%9D%E9%A3%BE%E5%99%A8%E6%A6%82%E5%BF%B5.png)
+
+
