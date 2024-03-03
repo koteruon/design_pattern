@@ -270,8 +270,8 @@ public void update() {
 ![發布/訂閱模式](./%E7%99%BC%E4%BD%88%E8%A8%82%E9%96%B1%E6%A8%A1%E5%BC%8F.png?raw=true)
 
 1. 模組的解偶
-
     > 發佈者(Publisher)和訂閱者(Subscriber)之間，透過中間人(broker)或 Message/Event Bus 來解偶
+	>
     > 就像訂閱某個粉專，訂閱者不需要知道發文的小編是誰
 
 2. 時間的解偶
