@@ -89,4 +89,102 @@ A: 我們不是藉著*繼承*超類別來獲得新行為，而是藉著將物件
 
 A: 原本就有一個抽象的Beverage，當然可以使用介面，但通常為了避免修改既有的程式碼，所以不會在抽象類別沒有任何問題時修正他。
 
-##
+## 程式碼
+
+1. 不需要修改原本的抽象飲料類別
+
+```java
+public abstract class Beverage {
+    String description = "Unknown Beverage";
+
+    public String getDescription() { // 寫好通用的方法
+        return description;
+    }
+
+    public abstract double cost(); // 在子類別裡面實作
+}
+```
+
+2. 為了可以和Beverage互換(包裝)，我們繼承Beverage類別
+
+```java
+public abstract class CondimentDecorator extends Beverage {
+    Beverage beverage; // 我們使用Beverage超型態來引用，好讓Decorator可以包裝任何一種飲料
+    public abstract String getDescription(); // 讓調味品都可以重新實作getDescription
+}
+```
+
+3. 撰寫飲料基底的類別，繼承Beverage，因為它是一種飲料
+
+```java
+public class HouseBlend extends Beverage {
+    public HouseBlend() {
+        description = "House Blend Coffee";
+    }
+
+    public double cost() {
+        return .89; // 不需要在這個類別裡加上調味品，因此回傳原本飲料的價錢
+    }
+}
+
+// -------------------------------------------
+
+public class Espresso extends Beverage {
+
+    public Espresso() {
+        description = "Espresso";
+    }
+
+    public double cost() {
+        return 1.99; // 不需要在這個類別裡加上調味品，因此回傳原本飲料的價錢
+    }
+}
+```
+
+4. 撰寫調味品，繼承CondimentDecorator，用Beverage的參考來實例化
+
+```java
+public class Mocha extends CondimentDecorator {
+    public Mocha(Beverage beverage) { // 保存被包裝的飲料(or調味品)
+        this.beverage = beverage;
+    }
+
+    public String getDescription() {
+        return beverage.getDescription() + ", Mocha"; // 希望description不只包含飲料，也包含被裝飾的敘述
+    }
+
+    public double cost() {
+        return .20 + beverage.cost(); // 計算添加Mocha的飲料的價格，先呼叫被裝飾的物件，再將結果加上Mocha的價格。
+    }
+}
+```
+
+5. 最後於客戶端進行測試
+
+```java
+public class StarbuzzCoffee {
+
+    public static void main(String args[]) {
+        Beverage beverage = new Espresso();
+        System.out.println(beverage.getDescription() + " $" + beverage.cost()); // 不添加調味料
+
+        Beverage beverage2 = new DarkRoast();
+        beverage2 = new Mocha(beverage2); // 可以動態決定要加多少個，多少種類都行
+        beverage2 = new Mocha(beverage2);
+        beverage2 = new Whip(beverage2);
+        System.out.println(beverage2.getDescription() + " $" + beverage2.cost()); // 添加調味料
+    }
+}
+```
+
+### 沒有蠢問題
+
+**Q: **
+
+## 更多實際上的例子
+
+1. java.io中的InputStream、FilterInputStream、BufferedInputStream、ZipInputStream
+
+2. spring中的
+
+3. notify中有多個
