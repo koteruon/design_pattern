@@ -184,6 +184,10 @@ public class StarbuzzCoffee {
 
 A: 當程式*依賴具體組件型態*時，裝飾器會破壞那段程式碼，但只要針對*抽象組件型態寫程式*，那麼裝飾器對程式碼來說仍然透明。然而，一旦針對*具體的組件寫程式*，就要重新思考應用程式的設計，以及裝飾器的使用了。
 
+**Q: 用戶端會不會很容易漏掉其中一個裝飾器？如：一杯Mocha、Soy與Whip的DarkRoast，會不會訂單漏了Whip**
+
+A: 沒錯，使用裝飾器模式，必須管理更多物件，所以更容易寫錯。但是，通常會用其他模式來製作裝飾器，例如*工廠模式*和*建造者模式*，可以看到用建立具體組件和他的裝飾器的做法是妥善封裝的。
+
 ## 更多實際上的例子
 
 1. java.io中的InputStream、FilterInputStream、BufferedInputStream、ZipInputStream
