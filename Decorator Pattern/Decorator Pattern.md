@@ -188,10 +188,23 @@ A: 當程式*依賴具體組件型態*時，裝飾器會破壞那段程式碼，
 
 A: 沒錯，使用裝飾器模式，必須管理更多物件，所以更容易寫錯。但是，通常會用其他模式來製作裝飾器，例如*工廠模式*和*建造者模式*，可以看到用建立具體組件和他的裝飾器的做法是妥善封裝的。
 
+**Q: 如果想讓getDescription()印出「Whip, Double Mocha」而不是「Mocha, Whip, Mocha」**
+
+A: 裝飾器的目的是幫裡面的物品加上行為，一旦你企圖窺視一組裝飾器裡面的每一個裝飾器時，就違背他們的初衷了。可以用一個CondimentPrettyPrint裝飾器(另外建一個裝飾器解決)來解析最終的decription，或回傳ArrayList。
+
 ## 更多實際上的例子
 
 1. java.io中的InputStream、FilterInputStream、BufferedInputStream、ZipInputStream
 
-2. spring中的
+![InputStream](./InputStreamUML.png)
 
-3. notify中有多個
+2. Servlet中的ServletRequestWrapper、ServletResponseWrapper、HttpServletRequestWrapper、HttpServletResponseWrapper
+
+3. spring的ApplicationContext中，配置所有的DataSource，可能是各種不同的類型，如:Oracle、SQL Server、MySQL，然後SessionFactory根據客戶每一次的請求，將DataSource設置成不同的數據源。
+    > Spring中用到裝飾器模式會在類別名上有兩種表現：一種是類別名中含有Wrapper(SessionRepositoryRequestWrapper)、另一種是類別名中含有Decorator(TransactionAwareCacheDecorator )。基本上都是動態地給一個對象添加一些額外的職責。
+
+4. notify中有多個通知要發送，如果都為每一種發送管道增加一個class會造成爆炸，可以在發送基礎上增加職責
+
+![Notifier](./Notifier.png)
+
+![NotifierDecorator](./NotifierDecorator.png)
