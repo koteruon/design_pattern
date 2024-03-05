@@ -228,6 +228,8 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
 }
 ```
 
+![PushModel](./PushModel.png)
+
 -   Pull model
     -   提供必要的資料或其來源(如 data id 或 subject 本身)給 Observer，由 Observer 自行取得相對關資料
     -   每個 Observer 都要重新取得資料，效率較差
@@ -255,6 +257,14 @@ public void update() {
     display();
 }
 ```
+
+![PullModel](./PullModel.png)
+
+### 同步/非同步？
+
+NotifyObserver()的實作方式通常是走訪observers成員，並且呼叫他們的Update()，通知他們做事。但若Update()會執行很久，會導致整個通知過程會很慢。因為Subject必須等Observer做事完後，才會繼續通知下一個Observer.
+
+![AsyncOrSync](AsyncOrSync.png)
 
 ## 觀察者模式(Observer Pattern) vs 發布/訂閱模式(Publish/Subscribe Pattern)
 
