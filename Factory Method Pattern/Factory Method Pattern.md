@@ -84,15 +84,20 @@ public Pizza orderPizza(String type) {
 public Pizza orderPizza(String type) {
     Pizza pizza;
 
+    /* 這是會變得部分，會隨著pizza品項不斷改變而反覆修改這段程式 */
     if (type.equals("cheese")) {
-        ~~pizza = new CheesePizza();~~
-    } else if (type.equals("greek")) {
-        pizza = new GreekPizza();
+        pizza = new CheesePizza();
+    <del>} else if (type.equals("greek")) {</del>
+        <del>pizza = new GreekPizza();</del>
     } else if (type.equals("pepperoni")) {
         pizza = new PepperoniPizza();
+    } else if (type.equals("clam")) { // 新增clampizza
+        pizza = new ClamPizza();
+    } else if (type.equals("veggie")) { // 新增veggiepizza
+        pizza = new VeggiePizza();
     }
 
-    /*  */
+    /* 這是我們認為不變的部分，因為多年來，準備、烘烤、包裝都沒有變過。 */
     pizza.prepare();
     pizza.bake();
     pizza.cut();
@@ -103,4 +108,4 @@ public Pizza orderPizza(String type) {
 ```
 
 > [!NOTE]
->
+> 上面中間的程式**並未**拒絕修改。每次pizza改變品項，我們就必須修改這段程式碼。
