@@ -87,8 +87,8 @@ public Pizza orderPizza(String type) {
     /* 這是會變得部分，會隨著pizza品項不斷改變而反覆修改這段程式 */
     if (type.equals("cheese")) {
         pizza = new CheesePizza();
-    <del>} else if (type.equals("greek")) {</del>
-        <del>pizza = new GreekPizza();</del>
+    } else if (type.equals("greek")) { // 要刪除的pizza
+        pizza = new GreekPizza();
     } else if (type.equals("pepperoni")) {
         pizza = new PepperoniPizza();
     } else if (type.equals("clam")) { // 新增clampizza
