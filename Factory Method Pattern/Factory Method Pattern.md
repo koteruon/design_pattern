@@ -4,30 +4,103 @@
 
 ### 工廠模式結構
 
-![工廠模式結構]()
+![工廠模式結構](./%E5%B7%A5%E5%BB%A0%E6%A8%A1%E5%BC%8F%E6%9E%B6%E6%A7%8B.png)
 
 ### 工廠模式的應用場景
 
-1. ****
-    >
-2. ****
-    >
+1. **在寫程式時，如果無法預知對象確切類別以及他的依賴關係時**
+    > 工廠方法會將創建產品的程式碼和實際使用產品的程式碼分離，能在不影響其他程式碼的情況下擴展產品創建部分程式碼
+2. **如果希望用戶能夠擴展你的 library 或 framework 的內部組件**
+    > 將框架中構造組件的程式碼集中到一個工廠方法中，並在繼承組件之外允許任何人對該方法進行重寫
+3. **如果希望復用現有對象來節省系統資源，而不是每次都重新創建對象**
+    1. 首先，需要創建儲存空間來存放所有已創建的對象
+    2. 當其他人請求一個對象時，程式在對象池中搜尋可以用的對象
+    3. 然後將他返回給客戶端程式
+    4. 如果沒有可用的對象，程式則創建一個新對象(將他添加到對向池中)
+        > 因此，需要有一個既能夠創建新對象，又可以復用現有對象的方法，和工廠方法非常相像
 
 ### 優缺點
 
 :o:**優點**
 
-1.
+1. 可以避免創建者和具體產品之間的緊密耦合
+2. 單一職責原則。可以將產品創建程式碼放在程式的單一個位置，使得程式碼更容易維護
+3. 開放封閉原則。無須更改現有客戶程式碼，就可以在程式中引入新的產品類型
 
 :x:**缺點**
 
-1.
+1. 工廠模式需要引入許多新的子類，可能讓程式碼變得複雜。最好的情況是將該模式引入創建者類的現有層次結構中(產品類太多時，為每個產品創建子類並無太大必要，可以在子類中復用基類中的控制參數)
 
-## 原始的模型架構
+## 簡單工廠模式
 
-1.
+### 原始的模型架構
 
-![原始的模型架構]()
+1. 首先你有一個 pizza，都會經過 prepare、bake、cut、box
+
+```java
+public Pizza orderPizza() {
+    Pizza pizza = new Pizza(); // 為了更有彈性，我們想把它寫成抽象類別或介面，遺憾的是，抽象類別或介面都無法直接實例化。
+
+    pizza.prepare();
+    pizza.bake();
+    pizza.cut();
+    pizza.box();
+
+    return pizza;
+}
+```
+
+2. 增加更多種類的pizza，透過傳入參數決定
+
+```java
+public Pizza orderPizza(String type) {
+    Pizza pizza;
+
+    /* 根據pizza的種類來實例化正確的具體類別，並指派給pizza實例變數 */
+    if (type.equals("cheese")) {
+        pizza = new CheesePizza();
+    } else if (type.equals("greek")) {
+        pizza = new GreekPizza();
+    } else if (type.equals("pepperoni")) {
+        pizza = new PepperoniPizza();
+    }
+
+    /* 做一些準備工作(揉麵團、放上醬料和佐料)，烘烤、切開、放到盒子 */
+    /* 每一種pizza的子型態(CheesePizza、GreekPizza...)都知道要怎麼準備他 */
+    pizza.prepare();
+    pizza.bake();
+    pizza.cut();
+    pizza.box();
+
+    return pizza;
+}
+```
 
 ### 遇到的需求與問題
 
+3. 需要增加ClamPizza和VeggiePizza，並刪除GreekPizza
+
+```java
+public Pizza orderPizza(String type) {
+    Pizza pizza;
+
+    if (type.equals("cheese")) {
+        ~~pizza = new CheesePizza();~~
+    } else if (type.equals("greek")) {
+        pizza = new GreekPizza();
+    } else if (type.equals("pepperoni")) {
+        pizza = new PepperoniPizza();
+    }
+
+    /*  */
+    pizza.prepare();
+    pizza.bake();
+    pizza.cut();
+    pizza.box();
+
+    return pizza;
+}
+```
+
+> [!NOTE]
+>
