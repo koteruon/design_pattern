@@ -31,7 +31,9 @@
 
 1. 工廠模式需要引入許多新的子類，可能讓程式碼變得複雜。最好的情況是將該模式引入創建者類的現有層次結構中(產品類太多時，為每個產品創建子類並無太大必要，可以在子類中復用基類中的控制參數)
 
-## 原始的模型架構
+## 簡單工廠(Simple Factory)
+
+### 原始的模型架構
 
 1. 首先你有一個 pizza，都會經過 prepare、bake、cut、box
 
@@ -111,7 +113,7 @@ public Pizza orderPizza(String type) {
 > [!NOTE]
 > 上面中間的程式**並未**拒絕修改。每次 pizza 改變品項，我們就必須修改這段程式碼。
 
-## 建構簡單工廠(封裝物件的建立)
+### 建構簡單工廠(封裝物件的建立)
 
 4. 將會變得部分移出 oderpizza()，移到另一個單純負責建立 pizza 的物件裡面(SimplePizzaFactory)
 
@@ -163,14 +165,99 @@ public class PizzaStore {
 
 **Q: 這樣做有什麼好處？只是把問題搬到另一個物件裡面**
 
-A: SimplePizzaFactory 可能有許多用戶端，未來可能還有 PizzaShopMenu 類別會使用這個工廠來取得 pizza，用來顯示 pizza 的說明和價格。也可能還有 HomeDelivery 類別會使用這個工廠來取得 pizza，採取和 PizzaStore 不一樣的方式來處理 pizza。**所以將建立pizza的程式封裝成一個類別，在處理變動時，只需要修改一個地方。**
+A: SimplePizzaFactory 可能有許多用戶端，未來可能還有 PizzaShopMenu 類別會使用這個工廠來取得 pizza，用來顯示 pizza 的說明和價格。也可能還有 HomeDelivery 類別會使用這個工廠來取得 pizza，採取和 PizzaStore 不一樣的方式來處理 pizza。**所以將建立 pizza 的程式封裝成一個類別，在處理變動時，只需要修改一個地方。**
 
 **Q: 有些會將工廠定義成靜態(static)方法，有什麼不同？**
 
-A: 將簡單工廠定義成靜態方法很常見，稱作靜態工廠，如此一來就不需要為了使用create(建立)方法而進行工廠物件實例化，**但這個做法有一項缺點，你無法繼承並修改create方法的行為。**
+A: 將簡單工廠定義成靜態方法很常見，稱作靜態工廠，如此一來就不需要為了使用 create(建立)方法而進行工廠物件實例化，**但這個做法有一項缺點，你無法繼承並修改 create 方法的行為。**
 
 ### 定義簡單工廠
 
 **簡單工廠不是設計模式，比較像習慣寫法**
 
 ![簡單工廠例子](./%E7%B0%A1%E5%96%AE%E5%B7%A5%E5%BB%A0%E4%BE%8B%E5%AD%90.png)
+
+> [!NOTE]
+> *實作介面* **不一定**代表 *在類別宣告式裡面使用implements來編寫一個實作了Java介面的類別* 。廣義來說，讓一個具體的類別實作超型態(可能是抽象類別或是介面)的方法，仍然可以視為 *實作* 那個超型態的 *介面*。
+
+## 工廠方法(Factory Method)
+
+5. 希望加盟Pizza店，因此創建兩個NYPizzaFactory和ChicagoPizzaFactory，製作不同風味的pizza。
+
+```java
+NYPizzaFactory nyFactory = new NYPizzaFactory();
+PizzaStore nyStore = new PizzaStore(nyFactory);
+nyStore.orderPizza("Veggie");
+
+// ----------------------------------------------------
+
+ChicagoPizzaFactory chicagoFactory = new ChicagoPizzaFactory();
+PizzaStore chicagoStore = new PizzaStore(chicagoFactory);
+chicagoStore.orderPizza("Veggie");
+```
+
+> [!WARNING]
+> 加盟的nyStore和chicagoStore開始採取自創的流程，因此我們需要把變得部分移出，利用抽象物件保留不變的部分(Pizza店和Pizza的製作過程綁再一起)，同時保持一些彈性由子類自己決定
+
+### 為pizza店設計框架、讓子類做決定
+
+6. 在PizzaStore類別裡，將所有的pizza製作動作局部化(localize)，同時讓連鎖店可以自由地製作地區風味
+
+```java
+public abstract class PizzaStore { // 宣告成抽象類別，讓子類實作工廠方法
+
+    public Pizza orderPizza(String type) {// 想要的話，可以將其設定為final，強迫子類一定要使用他
+        Pizza pizza;
+
+        pizza = createPizza(type); // 透過抽象方法，取得pizza，不再是factory物件的方法
+
+        /* 保留不變的地方，讓子類都能保持一致 */
+        pizza.prepare();
+        pizza.bake();
+        pizza.cut();
+        pizza.box();
+        return pizza;
+    }
+
+    abstract Pizza createPizza(String item); // 現在「工廠方法」是在PizzaStore裡面的抽象方法，也強迫所有子類必須實現這個方法
+}
+```
+
+> [!NOTE]
+> PizzaStore就是工廠，子類就是具體工廠，從SimplePizzaFactory的角色由PizzaStore的子類承擔
+
+7. 創建兩間Pizza店，NYPizzaStore和ChicagoStylePizzaStore，他們都繼承PizzaStore，子類別會用自己的createPizza方法製作地區風味pizza
+
+```java
+public class NYPizzaStore extends PizzaStore {
+
+    Pizza createPizza(String item) { // 想要紐約風味的pizza
+        if (item.equals("cheese")) {
+            return new NYStyleCheesePizza();
+        } else if (item.equals("veggie")) {
+            return new NYStyleVeggiePizza();
+        } else if (item.equals("clam")) {
+            return new NYStyleClamPizza();
+        } else if (item.equals("pepperoni")) {
+            return new NYStylePepperoniPizza();
+        } else return null;
+    }
+}
+
+// ----------------------------------------------------------------
+
+public class ChicagoPizzaStore extends PizzaStore {
+
+    Pizza createPizza(String item) { // 想要芝加哥風味的pizza
+        if (item.equals("cheese")) {
+            return new ChicagoStyleCheesePizza();
+        } else if (item.equals("veggie")) {
+            return new ChicagoStyleVeggiePizza();
+        } else if (item.equals("clam")) {
+            return new ChicagoStyleClamPizza();
+        } else if (item.equals("pepperoni")) {
+            return new ChicagoStylePepperoniPizza();
+        } else return null;
+    }
+}
+```
