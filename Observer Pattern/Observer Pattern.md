@@ -89,21 +89,21 @@ public void measurementsChanged() {
 
 ```java
 public interface Subject {
-	public void registerObserver(Observer o); // 接收Observer引數，註冊Observer
-	public void removeObserver(Observer o); // 接收Observer引數，移除Observer
-	public void notifyObservers(); // Subject改變時，這個方法會被呼叫，藉此通知觀察者
+    public void registerObserver(Observer o); // 接收Observer引數，註冊Observer
+    public void removeObserver(Observer o); // 接收Observer引數，移除Observer
+    public void notifyObservers(); // Subject改變時，這個方法會被呼叫，藉此通知觀察者
 }
 
 // ----------------------------------------------------------------
 
 public interface Observer {
-	public void update(float temp, float humidity, float pressure); // 這些測量數據改變時，Observer從Subject取得的狀態值
+    public void update(float temp, float humidity, float pressure); // 這些測量數據改變時，Observer從Subject取得的狀態值
 }
 
 // ----------------------------------------------------------------
 
 public interface DisplayElement {
-	public void display(); // 想要顯示的元素時，呼叫他
+    public void display(); // 想要顯示的元素時，呼叫他
 }
 ```
 
@@ -111,51 +111,51 @@ public interface DisplayElement {
 
 ```java
 public class WeatherData implements Subject {
-	private List<Observer> observers; // 保存觀察者的引用對象
-	private float temperature;
-	private float humidity;
-	private float pressure;
+    private List<Observer> observers; // 保存觀察者的引用對象
+    private float temperature;
+    private float humidity;
+    private float pressure;
 
-	public WeatherData() {
-		observers = new ArrayList<Observer>();
-	}
+    public WeatherData() {
+        observers = new ArrayList<Observer>();
+    }
 
-	public void registerObserver(Observer o) {
-		observers.add(o); //註冊時加入到List的最後
-	}
+    public void registerObserver(Observer o) {
+        observers.add(o); //註冊時加入到List的最後
+    }
 
-	public void removeObserver(Observer o) {
-		observers.remove(o); // 退出時從List中移除
-	}
+    public void removeObserver(Observer o) {
+        observers.remove(o); // 退出時從List中移除
+    }
 
-	public void notifyObservers() {
-		for (Observer observer : observers) { // 所有觀察者皆實作update方法，在這裡將最新狀態傳給每一個觀察者
-			observer.update(temperature, humidity, pressure);
-		}
-	}
+    public void notifyObservers() {
+        for (Observer observer : observers) { // 所有觀察者皆實作update方法，在這裡將最新狀態傳給每一個觀察者
+            observer.update(temperature, humidity, pressure);
+        }
+    }
 
-	public void measurementsChanged() {
-		notifyObservers(); // 當氣象站取得新的資料時，通知Observer
-	}
+    public void measurementsChanged() {
+        notifyObservers(); // 當氣象站取得新的資料時，通知Observer
+    }
 
-	public void setMeasurements(float temperature, float humidity, float pressure) {// 測試用，假設數據更新了
-		this.temperature = temperature;
-		this.humidity = humidity;
-		this.pressure = pressure;
-		measurementsChanged();
-	}
+    public void setMeasurements(float temperature, float humidity, float pressure) {// 測試用，假設數據更新了
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        measurementsChanged();
+    }
 
-	public float getTemperature() {
-		return temperature; // pull model使用
-	}
+    public float getTemperature() {
+        return temperature; // pull model使用
+    }
 
-	public float getHumidity() {
-		return humidity; // pull model使用
-	}
+    public float getHumidity() {
+        return humidity; // pull model使用
+    }
 
-	public float getPressure() {
-		return pressure; // pull model使用
-	}
+    public float getPressure() {
+        return pressure; // pull model使用
+    }
 
 }
 
@@ -165,25 +165,25 @@ public class WeatherData implements Subject {
 
 ```java
 public class CurrentConditionsDisplay implements Observer, DisplayElement {
-	private float temperature;
-	private float humidity;
-	private WeatherData weatherData; // 未來想要退出訂閱時可以使用到(不一定要)
+    private float temperature;
+    private float humidity;
+    private WeatherData weatherData; // 未來想要退出訂閱時可以使用到(不一定要)
 
-	public CurrentConditionsDisplay(WeatherData weatherData) {
-		this.weatherData = weatherData;
-		weatherData.registerObserver(this); // 透過建構子，將畫面註冊為觀察者
-	}
+    public CurrentConditionsDisplay(WeatherData weatherData) {
+        this.weatherData = weatherData;
+        weatherData.registerObserver(this); // 透過建構子，將畫面註冊為觀察者
+    }
 
-	public void update(float temperature, float humidity, float pressure) {
-		this.temperature = temperature;
-		this.humidity = humidity;
-		display(); // 在MVC的地方有更好的寫法
-	}
+    public void update(float temperature, float humidity, float pressure) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        display(); // 在MVC的地方有更好的寫法
+    }
 
-	public void display() {
-		System.out.println("Current conditions: " + temperature
-			+ "F degrees and " + humidity + "% humidity");
-	}
+    public void display() {
+        System.out.println("Current conditions: " + temperature
+            + "F degrees and " + humidity + "% humidity");
+    }
 }
 ```
 
@@ -192,16 +192,16 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
 ```java
 public class WeatherStation {
 
-	public static void main(String[] args) {
-		WeatherData weatherData = new WeatherData();
+    public static void main(String[] args) {
+        WeatherData weatherData = new WeatherData();
 
-		CurrentConditionsDisplay currentDisplay =
-			new CurrentConditionsDisplay(weatherData); // 透過建構子的方式，在方法裡面對Subject註冊自己
+        CurrentConditionsDisplay currentDisplay =
+            new CurrentConditionsDisplay(weatherData); // 透過建構子的方式，在方法裡面對Subject註冊自己
 
-		weatherData.setMeasurements(80, 65, 30.4f); //數據更新，會收到update，並display
-		weatherData.removeObserver(currentDisplay); //退出訂閱，不在收到通知
-		weatherData.setMeasurements(62, 90, 28.1f); //數據更新，不會收到update
-	}
+        weatherData.setMeasurements(80, 65, 30.4f); //數據更新，會收到update，並display
+        weatherData.removeObserver(currentDisplay); //退出訂閱，不在收到通知
+        weatherData.setMeasurements(62, 90, 28.1f); //數據更新，不會收到update
+    }
 }
 ```
 
@@ -215,16 +215,16 @@ public class WeatherStation {
 
 ```java
 public class CurrentConditionsDisplay implements Observer, DisplayElement {
-	private float temperature;
-	private float humidity;
+    private float temperature;
+    private float humidity;
 
-	public void update(float temperature, float humidity, float pressure) { // Observer會接收到不必要的資料，例如pressure
-		this.temperature = temperature;
-		this.humidity = humidity;
-		display();
-	}
+    public void update(float temperature, float humidity, float pressure) { // Observer會接收到不必要的資料，例如pressure
+        this.temperature = temperature;
+        this.humidity = humidity;
+        display();
+    }
 
-	public void display() {...}
+    public void display() {...}
 }
 ```
 
@@ -247,7 +247,7 @@ public void notifyObservers() {
 
 // Object interface
 public interface Observer {
-	public void update(); // 沒有參數
+    public void update(); // 沒有參數
 }
 
 // Object
@@ -281,7 +281,7 @@ NotifyObserver()的實作方式通常是走訪observers成員，並且呼叫他�
 
 1. 模組的解偶
     > 發佈者(Publisher)和訂閱者(Subscriber)之間，透過中間人(broker)或 Message/Event Bus 來解偶
-	>
+    >
     > 就像訂閱某個粉專，訂閱者不需要知道發文的小編是誰
 
 2. 時間的解偶
@@ -313,11 +313,11 @@ NotifyObserver()的實作方式通常是走訪observers成員，並且呼叫他�
 ```java
 public interface ChangeManager {
 
-	public abstract void register(Subject subject, Observer observer);
+    public abstract void register(Subject subject, Observer observer);
 
-	public abstract void unregister(Subject subject, Observer observer);
+    public abstract void unregister(Subject subject, Observer observer);
 
-	public abstract void notifyObservers(Subject subject);
+    public abstract void notifyObservers(Subject subject);
 
 }
 ```
@@ -327,37 +327,37 @@ public interface ChangeManager {
 ```java
 public class SimpleChangeManager implements ChangeManager { // 通常會做成Singleton
 
-	Map<Subject, List<Observer>> mapping; // 記錄每一個Subject對應多個的Observer
+    Map<Subject, List<Observer>> mapping; // 記錄每一個Subject對應多個的Observer
 
-	public SimpleChangeManager(){
-		mapping = new HashMap<Subject, List<Observer>>();
-	}
+    public SimpleChangeManager(){
+        mapping = new HashMap<Subject, List<Observer>>();
+    }
 
-	@Override
-	public void register(Subject subject, Observer observer){
-		if(mapping.containsKey(subject)){
-			mapping.get(subject).add(observer);
-		}
-		else{
-			mapping.put(subject, new ArrayList<Observer>(Arrays.asList(observer)));
-		}
-	}
+    @Override
+    public void register(Subject subject, Observer observer){
+        if(mapping.containsKey(subject)){
+            mapping.get(subject).add(observer);
+        }
+        else{
+            mapping.put(subject, new ArrayList<Observer>(Arrays.asList(observer)));
+        }
+    }
 
-	@Override
-	public void unregister(Subject subject, Observer observer){
-		if(mapping.containsKey(subject)){
-			if(mapping.get(subject).contains(observer)){
-				mapping.get(subject).remove(observer);
-			}
-		}
-	}
+    @Override
+    public void unregister(Subject subject, Observer observer){
+        if(mapping.containsKey(subject)){
+            if(mapping.get(subject).contains(observer)){
+                mapping.get(subject).remove(observer);
+            }
+        }
+    }
 
-	@Override
-	public void notifyObservers(Subject subject){
-		for (Observer observer : mapping.get(subject)) {
-			observer.update(subject);
-		}
-	}
+    @Override
+    public void notifyObservers(Subject subject){
+        for (Observer observer : mapping.get(subject)) {
+            observer.update(subject);
+        }
+    }
 }
 ```
 
@@ -366,25 +366,25 @@ public class SimpleChangeManager implements ChangeManager { // 通常會做成Si
 ```java
 public class ConcreteSubjectWithChangeManager implements Subject {
 
-	private ChangeManager changeManager; // 保留 ChangeManager 實例的引用
+    private ChangeManager changeManager; // 保留 ChangeManager 實例的引用
 
-	public ConcreteSubjectWithChangeManager(ChangeManager changeManager) {
-		this.changeManager = changeManager;
-	}
+    public ConcreteSubjectWithChangeManager(ChangeManager changeManager) {
+        this.changeManager = changeManager;
+    }
 
-	@Override
-	public void registerObserver(Observer observer) {
-		changeManager.register(this, observer);
-	}
+    @Override
+    public void registerObserver(Observer observer) {
+        changeManager.register(this, observer);
+    }
 
-	@Override
-	public void removeObserver(Observer observer) {
-		changeManager.unregister(this, observer);
-	}
+    @Override
+    public void removeObserver(Observer observer) {
+        changeManager.unregister(this, observer);
+    }
 
-	@Override
-	public void notifyObservers() {
-		changeManager.notifyObservers(this);
-	}
+    @Override
+    public void notifyObservers() {
+        changeManager.notifyObservers(this);
+    }
 }
 ```
