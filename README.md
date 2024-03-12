@@ -10,6 +10,9 @@
 * [觀察者模式 Observer Pattern](./Observer%20Pattern/Observer%20Pattern.md)
     > 觀察者模式是一種行為設計模式，定義物件之間的一對多依賴關係，當一個物件改變狀態時，依賴它的物件都會自動收到通知和更新。
 
+* [工廠模式 Factory Method Pattern](./Factory%20Method%20Pattern/Factory%20Method%20Pattern.md)
+    > 工廠模式是一種創建型設計模式，在父類提供一個創建對象的方法，允許子類決定實例化對象的類型。
+
 ## 結構型模式篇 | Structural Patterns
 
 * [裝飾器模式 Decorator Pattern](./Decorator%20Pattern/Decorator%20Pattern.md)
