@@ -223,9 +223,6 @@ public abstract class PizzaStore { // 宣告成抽象類別，讓子類實作工
 }
 ```
 
-> [!NOTE]
-> PizzaStore就是工廠，子類就是具體工廠，從SimplePizzaFactory的角色由PizzaStore的子類承擔
-
 7. 創建兩間Pizza店，NYPizzaStore和ChicagoStylePizzaStore，他們都繼承PizzaStore，子類別會用自己的createPizza方法製作地區風味pizza
 
 ```java
@@ -370,3 +367,53 @@ public class PizzaTestDrive {
 ![建立者和產品視為平行的](./%E5%BB%BA%E7%AB%8B%E8%80%85%E5%92%8C%E7%94%A2%E5%93%81%E8%A6%96%E7%82%BA%E5%B9%B3%E8%A1%8C.png)
 
 ### 定義工廠模式
+
+> [!TIP]
+> **工廠方法模式**定義了一個創建物件的介面，但是他讓子類別決定想要實例化哪一個類別。工廠方法可以讓一個類別將實例化的動作推遲到子類別。
+
+工廠方法模式可以讓我們將具體型態的實例化封裝起來。所以通常會聽到開發者說：「工廠方法模式可以讓子類別決定想要實例化的類別。」
+
+### 沒有蠢問題
+
+**Q: 如果ConcreteCreator只有一個時，工廠方法有什麼好處？**
+
+A: 只有一個還是可以防止產品的實作和他的用法出現耦合，另外需要加入額外的產品或改變產品的實作，並不會影響你的Creator。
+
+**Q: 我們可以說NYStylePizzaStore和ChicagoStylePizzaStore都是用簡單工廠(Simple Factory)實作的嗎？**
+
+A: 兩種做法很像，但用法不同。具體的Pizza店看起來很像SimplePizzaFactory，但具體Pizza店繼承的類別定義的一個抽象方法createPizza()，而createPizza()方法是**由每一家店定義的**。在簡單工廠裡，工廠是與PizzaStore組合在一起的另一個物件。
+
+**Q: 工廠方法和Creator類別一定要是抽象的嗎？**
+
+A: 不是，可以定義預設的工廠方法來產生具體的產品。即使Creator沒有任何子類，還是可以製作產品。
+
+**Q: 每一個具體建立者都要製作多個產品嗎？還是可以只製作一個？**
+
+A: 我們製作的結構就是參數化工廠方法，可以根據傳來的參數製作多個物件。但是，工廠通常只會製作一個物件，而不使用參數。兩者型式都是有用的模式。
+
+**Q: 用String型態來傳遞參數似乎不太安全，如果有人把ClamPizza寫成CalmPizza？**
+
+A: 對的，這會造成執行期錯誤，可以使用代表參數種類的物件、使用靜態常數、或使用enum，確保編譯期可以抓到。
+
+**Q: 簡單工廠和工廠方法還有沒有差異？**
+
+A: 簡單工廠可以將物件的建立封裝起來，但是無法提供工廠方法的彈性，因為你無法改變你所建立的產品。
+
+## 依賴反轉原則(Dependency Inversion Principle)
+
+> [!TIP]
+> 要依賴抽象，不要依賴具體類別
+
+與「針對介面寫程式，不要針對實作寫程式」很像，但依賴反轉更強調**抽象**，提出高階的組件不應該依賴低階的組件，**兩者都要**依賴抽象。
+
+### 第一版的PizzaStore
+
+* 因為PizzaStore直接建立這些Pizza物件，所以他依賴這些物件。如果這些Pizza的具體實作改變了，有可能就要修改PizzaStore，所以我們說PizzaStore**依賴**Pizza具體實作。
+
+![第一版PizzaStore依賴圖](./%E7%AC%AC%E4%B8%80%E7%89%88PizzaStore%E4%BE%9D%E8%B3%B4%E5%9C%96.png)
+
+### 使用工廠模式後的PizzaStore
+
+* 主要問題是PizzaStore他依賴每一種Pizza，因為orderPizza裡實例化具體型態。雖然建立一個抽象Pizza，但我們仍建立許多具體的Pizza。使用工廠模式，將orderPizza方法裡的實例化拿出來後，就可以解決依賴。此時PizzaStore只依賴Pizza介面，他是抽象類別，Pizza介面也是抽象的，具體Pizza實作Pizza介面，所以依賴他。
+
+![工廠模式後的PizzaStore依賴圖](./%E5%B7%A5%E5%BB%A0%E6%A8%A1%E5%BC%8F%E5%BE%8C%E7%9A%84PizzaStore%E4%BE%9D%E8%B3%B4%E5%9C%96.png)
