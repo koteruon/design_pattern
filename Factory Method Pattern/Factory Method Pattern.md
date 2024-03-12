@@ -345,3 +345,28 @@ public class ChicagoStyleCheesePizza extends Pizza {
     }
 }
 ```
+
+9. 撰寫客戶端測試訂購Pizza
+
+```java
+public class PizzaTestDrive {
+
+    public static void main(String[] args) {
+        // 建立兩個不同的Pizza店
+        PizzaStore nyStore = new NYPizzaStore();
+        PizzaStore chicagoStore = new ChicagoPizzaStore();
+
+        // 用一家店來製作Ethan的訂單
+        Pizza pizza = nyStore.orderPizza("cheese");
+        System.out.println("Ethan ordered a " + pizza.getName() + "\n");
+
+        // 用另一家店來製作Joel的訂單
+        pizza = chicagoStore.orderPizza("cheese");
+        System.out.println("Joel ordered a " + pizza.getName() + "\n");
+    }
+}
+```
+
+![建立者和產品視為平行的](./%E5%BB%BA%E7%AB%8B%E8%80%85%E5%92%8C%E7%94%A2%E5%93%81%E8%A6%96%E7%82%BA%E5%B9%B3%E8%A1%8C.png)
+
+### 定義工廠模式
