@@ -219,7 +219,7 @@ public abstract class PizzaStore { // 宣告成抽象類別，讓子類實作工
         return pizza;
     }
 
-    abstract Pizza createPizza(String item); // 現在「工廠方法」是在PizzaStore裡面的抽象方法，也強迫所有子類必須實現這個方法
+    protected abstract Pizza createPizza(String item); // 現在「工廠方法」是在PizzaStore裡面的抽象方法，也強迫所有子類必須實現這個方法
 }
 ```
 
@@ -229,9 +229,10 @@ public abstract class PizzaStore { // 宣告成抽象類別，讓子類實作工
 7. 創建兩間Pizza店，NYPizzaStore和ChicagoStylePizzaStore，他們都繼承PizzaStore，子類別會用自己的createPizza方法製作地區風味pizza
 
 ```java
-public class NYPizzaStore extends PizzaStore {
+public class NYPizzaStore extends PizzaStore {// 繼承PizzaStore，所以繼承orderPizza()和其他方法
 
-    Pizza createPizza(String item) { // 想要紐約風味的pizza
+    /* 必須實作createPizza，因為他是抽象的，並且會回傳一個Pizza，子類別全權負責決定他要實例化哪一種具體的Pizza */
+    Pizza createPizza(String item) { // 為每一種pizza製作紐約風味
         if (item.equals("cheese")) {
             return new NYStyleCheesePizza();
         } else if (item.equals("veggie")) {
@@ -248,7 +249,7 @@ public class NYPizzaStore extends PizzaStore {
 
 public class ChicagoPizzaStore extends PizzaStore {
 
-    Pizza createPizza(String item) { // 想要芝加哥風味的pizza
+    Pizza createPizza(String item) { // 為每一種pizza製作芝加哥風味
         if (item.equals("cheese")) {
             return new ChicagoStyleCheesePizza();
         } else if (item.equals("veggie")) {
@@ -258,6 +259,89 @@ public class ChicagoPizzaStore extends PizzaStore {
         } else if (item.equals("pepperoni")) {
             return new ChicagoStylePepperoniPizza();
         } else return null;
+    }
+}
+```
+
+**Q: 子類如何做決定？**
+
+A: 從PizzaStore的orderPizza想，在方法裡面用Pizza物件做了很多事，但Pizza是抽象的，**具體型態只會在子類別裡面建立**，換句話說，他們是**解耦的**。所以要看你向哪一個pizza店訂購Pizza，是NYPizzaStore或ChicagoPizzaStore。所以子類別做出及時的決定嗎？沒有，但從orderPizza的角度，決定做哪一種Pizza的就是那個子類別。所以子類別其實沒有「做決定」，決定向哪一間訂餐的人是你，但是他們確實決定了做出來的是哪種Pizza。
+
+8. 製作Pizza介面(產品)和各式風味的Pizza(具體產品)
+
+```java
+public abstract class Pizza {
+    String name; // 名稱
+    String dough; // 餅皮
+    String sauce; // 醬料
+    ArrayList<String> toppings = new ArrayList<String>(); // 一組配料
+
+    void prepare() { // 準備流程是一組特定順序的步驟
+        System.out.println("Prepare " + name);
+        System.out.println("Tossing dough...");
+        System.out.println("Adding sauce...");
+        System.out.println("Adding toppings: ");
+        for (String topping : toppings) {
+            System.out.println("   " + topping);
+        }
+    }
+
+    /* 烘烤、切開、包裝的基本預設值 */
+    void bake() {
+        System.out.println("Bake for 25 minutes at 350");
+    }
+
+    void cut() {
+        System.out.println("Cut the pizza into diagonal slices");
+    }
+
+    void box() {
+        System.out.println("Place pizza in official PizzaStore box");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String toString() {
+        StringBuffer display = new StringBuffer();
+        display.append("---- " + name + " ----\n");
+        display.append(dough + "\n");
+        display.append(sauce + "\n");
+        for (String topping : toppings) {
+            display.append(topping + "\n");
+        }
+        return display.toString();
+    }
+}
+
+// ----------------------------------------------------------------
+
+public class NYStyleCheesePizza extends Pizza {
+
+    public NYStyleCheesePizza() {
+        name = "NY Style Sauce and Cheese Pizza";
+        dough = "Thin Crust Dough"; // 薄餅皮
+        sauce = "Marinara Sauce"; // 紅醬
+
+        toppings.add("Grated Reggiano Cheese"); // 瑞吉起司的配料
+    }
+}
+
+// ----------------------------------------------------------------
+
+public class ChicagoStyleCheesePizza extends Pizza {
+
+    public ChicagoStyleCheesePizza() {
+        name = "Chicago Style Deep Dish Cheese Pizza";
+        dough = "Extra Thick Crust Dough"; // 超厚餅皮
+        sauce = "Plum Tomato Sauce"; // 番茄醬
+
+        toppings.add("Shredded Mozzarella Cheese"); // 莫札瑞拉起司的配料
+    }
+
+    void cut() { // 芝加哥風味的Pizza覆寫cut方法，將Pizza切成方塊
+        System.out.println("Cutting the pizza into square slices");
     }
 }
 ```
