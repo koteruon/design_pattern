@@ -178,11 +178,11 @@ A: 將簡單工廠定義成靜態方法很常見，稱作靜態工廠，如此�
 ![簡單工廠例子](./%E7%B0%A1%E5%96%AE%E5%B7%A5%E5%BB%A0%E4%BE%8B%E5%AD%90.png)
 
 > [!NOTE]
-> *實作介面* **不一定**代表 *在類別宣告式裡面使用implements來編寫一個實作了Java介面的類別* 。廣義來說，讓一個具體的類別實作超型態(可能是抽象類別或是介面)的方法，仍然可以視為 *實作* 那個超型態的 *介面*。
+> _實作介面_ **不一定**代表 _在類別宣告式裡面使用 implements 來編寫一個實作了 Java 介面的類別_ 。廣義來說，讓一個具體的類別實作超型態(可能是抽象類別或是介面)的方法，仍然可以視為 _實作_ 那個超型態的 _介面_。
 
 ## 工廠方法(Factory Method)
 
-5. 希望加盟Pizza店，因此創建兩個NYPizzaFactory和ChicagoPizzaFactory，製作不同風味的pizza。
+5. 希望加盟 Pizza 店，因此創建兩個 NYPizzaFactory 和 ChicagoPizzaFactory，製作不同風味的 pizza。
 
 ```java
 NYPizzaFactory nyFactory = new NYPizzaFactory();
@@ -197,11 +197,11 @@ chicagoStore.orderPizza("Veggie");
 ```
 
 > [!WARNING]
-> 加盟的nyStore和chicagoStore開始採取自創的流程，因此我們需要把變得部分移出，利用抽象物件保留不變的部分(Pizza店和Pizza的製作過程綁再一起)，同時保持一些彈性由子類自己決定
+> 加盟的 nyStore 和 chicagoStore 開始採取自創的流程，因此我們需要把變得部分移出，利用抽象物件保留不變的部分(Pizza 店和 Pizza 的製作過程綁再一起)，同時保持一些彈性由子類自己決定
 
-### 為pizza店設計框架、讓子類做決定
+### 為 pizza 店設計框架、讓子類做決定
 
-6. 在PizzaStore類別裡，將所有的pizza製作動作局部化(localize)，同時讓連鎖店可以自由地製作地區風味
+6. 在 PizzaStore 類別裡，將所有的 pizza 製作動作局部化(localize)，同時讓連鎖店可以自由地製作地區風味
 
 ```java
 public abstract class PizzaStore { // 宣告成抽象類別，讓子類實作工廠方法
@@ -223,7 +223,7 @@ public abstract class PizzaStore { // 宣告成抽象類別，讓子類實作工
 }
 ```
 
-7. 創建兩間Pizza店，NYPizzaStore和ChicagoStylePizzaStore，他們都繼承PizzaStore，子類別會用自己的createPizza方法製作地區風味pizza
+7. 創建兩間 Pizza 店，NYPizzaStore 和 ChicagoStylePizzaStore，他們都繼承 PizzaStore，子類別會用自己的 createPizza 方法製作地區風味 pizza
 
 ```java
 public class NYPizzaStore extends PizzaStore {// 繼承PizzaStore，所以繼承orderPizza()和其他方法
@@ -262,9 +262,9 @@ public class ChicagoPizzaStore extends PizzaStore {
 
 **Q: 子類如何做決定？**
 
-A: 從PizzaStore的orderPizza想，在方法裡面用Pizza物件做了很多事，但Pizza是抽象的，**具體型態只會在子類別裡面建立**，換句話說，他們是**解耦的**。所以要看你向哪一個pizza店訂購Pizza，是NYPizzaStore或ChicagoPizzaStore。所以子類別做出及時的決定嗎？沒有，但從orderPizza的角度，決定做哪一種Pizza的就是那個子類別。所以子類別其實沒有「做決定」，決定向哪一間訂餐的人是你，但是他們確實決定了做出來的是哪種Pizza。
+A: 從 PizzaStore 的 orderPizza 想，在方法裡面用 Pizza 物件做了很多事，但 Pizza 是抽象的，**具體型態只會在子類別裡面建立**，換句話說，他們是**解耦的**。所以要看你向哪一個 pizza 店訂購 Pizza，是 NYPizzaStore 或 ChicagoPizzaStore。所以子類別做出及時的決定嗎？沒有，但從 orderPizza 的角度，決定做哪一種 Pizza 的就是那個子類別。所以子類別其實沒有「做決定」，決定向哪一間訂餐的人是你，但是他們確實決定了做出來的是哪種 Pizza。
 
-8. 製作Pizza介面(產品)和各式風味的Pizza(具體產品)
+8. 製作 Pizza 介面(產品)和各式風味的 Pizza(具體產品)
 
 ```java
 public abstract class Pizza {
@@ -343,7 +343,7 @@ public class ChicagoStyleCheesePizza extends Pizza {
 }
 ```
 
-9. 撰寫客戶端測試訂購Pizza
+9. 撰寫客戶端測試訂購 Pizza
 
 ```java
 public class PizzaTestDrive {
@@ -375,25 +375,25 @@ public class PizzaTestDrive {
 
 ### 沒有蠢問題
 
-**Q: 如果ConcreteCreator只有一個時，工廠方法有什麼好處？**
+**Q: 如果 ConcreteCreator 只有一個時，工廠方法有什麼好處？**
 
-A: 只有一個還是可以防止產品的實作和他的用法出現耦合，另外需要加入額外的產品或改變產品的實作，並不會影響你的Creator。
+A: 只有一個還是可以防止產品的實作和他的用法出現耦合，另外需要加入額外的產品或改變產品的實作，並不會影響你的 Creator。
 
-**Q: 我們可以說NYStylePizzaStore和ChicagoStylePizzaStore都是用簡單工廠(Simple Factory)實作的嗎？**
+**Q: 我們可以說 NYStylePizzaStore 和 ChicagoStylePizzaStore 都是用簡單工廠(Simple Factory)實作的嗎？**
 
-A: 兩種做法很像，但用法不同。具體的Pizza店看起來很像SimplePizzaFactory，但具體Pizza店繼承的類別定義的一個抽象方法createPizza()，而createPizza()方法是**由每一家店定義的**。在簡單工廠裡，工廠是與PizzaStore組合在一起的另一個物件。
+A: 兩種做法很像，但用法不同。具體的 Pizza 店看起來很像 SimplePizzaFactory，但具體 Pizza 店繼承的類別定義的一個抽象方法 createPizza()，而 createPizza()方法是**由每一家店定義的**。在簡單工廠裡，工廠是與 PizzaStore 組合在一起的另一個物件。
 
-**Q: 工廠方法和Creator類別一定要是抽象的嗎？**
+**Q: 工廠方法和 Creator 類別一定要是抽象的嗎？**
 
-A: 不是，可以定義預設的工廠方法來產生具體的產品。即使Creator沒有任何子類，還是可以製作產品。
+A: 不是，可以定義預設的工廠方法來產生具體的產品。即使 Creator 沒有任何子類，還是可以製作產品。
 
 **Q: 每一個具體建立者都要製作多個產品嗎？還是可以只製作一個？**
 
 A: 我們製作的結構就是參數化工廠方法，可以根據傳來的參數製作多個物件。但是，工廠通常只會製作一個物件，而不使用參數。兩者型式都是有用的模式。
 
-**Q: 用String型態來傳遞參數似乎不太安全，如果有人把ClamPizza寫成CalmPizza？**
+**Q: 用 String 型態來傳遞參數似乎不太安全，如果有人把 ClamPizza 寫成 CalmPizza？**
 
-A: 對的，這會造成執行期錯誤，可以使用代表參數種類的物件、使用靜態常數、或使用enum，確保編譯期可以抓到。
+A: 對的，這會造成執行期錯誤，可以使用代表參數種類的物件、使用靜態常數、或使用 enum，確保編譯期可以抓到。
 
 **Q: 簡單工廠和工廠方法還有沒有差異？**
 
@@ -406,14 +406,27 @@ A: 簡單工廠可以將物件的建立封裝起來，但是無法提供工廠�
 
 與「針對介面寫程式，不要針對實作寫程式」很像，但依賴反轉更強調**抽象**，提出高階的組件不應該依賴低階的組件，**兩者都要**依賴抽象。
 
-### 第一版的PizzaStore
+### 第一版的 PizzaStore
 
-* 因為PizzaStore直接建立這些Pizza物件，所以他依賴這些物件。如果這些Pizza的具體實作改變了，有可能就要修改PizzaStore，所以我們說PizzaStore**依賴**Pizza具體實作。
+-   因為 PizzaStore 直接建立這些 Pizza 物件，所以他依賴這些物件。如果這些 Pizza 的具體實作改變了，有可能就要修改 PizzaStore，所以我們說 PizzaStore**依賴**Pizza 具體實作。
 
 ![第一版PizzaStore依賴圖](./%E7%AC%AC%E4%B8%80%E7%89%88PizzaStore%E4%BE%9D%E8%B3%B4%E5%9C%96.png)
 
-### 使用工廠模式後的PizzaStore
+### 使用工廠模式後的 PizzaStore
 
-* 主要問題是PizzaStore他依賴每一種Pizza，因為orderPizza裡實例化具體型態。雖然建立一個抽象Pizza，但我們仍建立許多具體的Pizza。使用工廠模式，將orderPizza方法裡的實例化拿出來後，就可以解決依賴。此時PizzaStore只依賴Pizza介面，他是抽象類別，Pizza介面也是抽象的，具體Pizza實作Pizza介面，所以依賴他。
+-   主要問題是 PizzaStore 他依賴每一種 Pizza，因為 orderPizza 裡實例化具體型態。雖然建立一個抽象 Pizza，但我們仍建立許多具體的 Pizza。使用工廠模式，將 orderPizza 方法裡的實例化拿出來後，就可以解決依賴。此時 PizzaStore 只依賴 Pizza 介面，他是抽象類別，Pizza 介面也是抽象的，具體 Pizza 實作 Pizza 介面，所以依賴他。
 
 ![工廠模式後的PizzaStore依賴圖](./%E5%B7%A5%E5%BB%A0%E6%A8%A1%E5%BC%8F%E5%BE%8C%E7%9A%84PizzaStore%E4%BE%9D%E8%B3%B4%E5%9C%96.png)
+
+### 以下方針可以避免設計違反依賴反轉原則
+
+1. 任何變數都不應該保存具體類別的參考
+    > 當你使用 new，你就會保存一個指向具體類別的參考，使用工廠來避免
+2. 任何類別都不應該從具體類別衍生出來
+    > 從具體類別衍生，就依賴一個具體類別
+3. 任何方法都不應該覆寫基底類別的任何已實作的方法
+    > 覆寫已實作的方法，就代表你的基底類別從一開始就不是真正的抽象。基底類的實作方法，是為了讓所有子類別共用的
+
+**上面的原則是你要盡量遵守，不是不留餘地的死規則，目的是在違反原則時能立刻察覺，並知道何時有充分的理由可以違反原則**
+
+-   我們經常不假思索的實例化 String 物件，有違反原則嗎？有，可以這樣做嗎？可以，為什麼？因為 String 非常不可能改變
