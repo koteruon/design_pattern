@@ -30,11 +30,11 @@
 
 ### 原始的模型架構
 
--   以下的情境是基於工廠模式後而來[工廠模式](../Factory%20Method%20Pattern/Factory%20Method%20Pattern.md)
+-   以下的情境是基於工廠模式而來[工廠模式](../Factory%20Method%20Pattern/Factory%20Method%20Pattern.md)
 
 ### 遇到的需求與問題
 
-1.  Pizza 店的製作流程被統一後，但 Pizza 產品內部的食材卻因地區不同，而且 NYStyleCheesePizza 與 ChicagoStyleCheesePizza 只差在地區性食材的地方，Pizza 的作法是相同的(餅皮+醬料+起司)，都有相同的準備步驟，只是使用不同的食材。
+10. Pizza 店的製作流程被統一後，但 Pizza 產品內部的食材卻因地區不同，而且 NYStyleCheesePizza 與 ChicagoStyleCheesePizza 只差在地區性食材的地方，Pizza 的作法是相同的(餅皮+醬料+起司)，都有相同的準備步驟，只是使用不同的食材。
 
 ```java
 public class NYStyleCheesePizza extends Pizza {
@@ -72,7 +72,7 @@ public class ChicagoStyleCheesePizza extends Pizza {
 >
 > **抽象工廠模式**提供一個介面來建立相關或相依的物件家族，而不需要指定具體類別
 
-1.  首先定義介面的抽象工廠，實例**不同地區的食材工廠**來針對**不同地區風味的食材**做製造
+11. 首先定義介面的抽象工廠，實例**不同地區的食材工廠**來針對**不同地區風味的食材**做製造
 
 ```java
 public interface PizzaIngredientFactory {
