@@ -70,7 +70,7 @@ public class ChicagoStyleCheesePizza extends Pizza {
 
 > [!TIP]
 >
-> **工廠方法模式**定義了一個創建物件的介面，但是他讓子類別決定想要實例化哪一個類別。工廠方法可以讓一個類別將實例化的動作推遲到子類別。
+> **抽象工廠模式**提供一個介面來建立相關或相依的物件家族，而不需要指定具體類別
 
 1.  首先定義介面的抽象工廠，實例**不同地區的食材工廠**來針對**不同地區風味的食材**做製造
 
@@ -122,7 +122,7 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory { // 紐
 }
 ```
 
-12. 修改 Pizza 類，讓食材工廠生產食材即可
+12. 修改 Pizza 類(抽象產品)，讓食材工廠生產食材即可，並修改 CheesePizza(具體產品)，讓要求食材由工廠製造
 
 ```java
 public abstract class Pizza {
@@ -159,13 +159,69 @@ public abstract class Pizza {
 		return name;
 	}
 }
+
+// ----------------------------------------------------------------
+
+public class CheesePizza extends Pizza {
+	PizzaIngredientFactory ingredientFactory;
+
+	public CheesePizza(PizzaIngredientFactory ingredientFactory) { // 為了製作Pizza，我需要一個工廠來提供食材
+		this.ingredientFactory = ingredientFactory; // 會在建構式接收一個工廠，並將它存入一個實例變數
+	}
+
+	void prepare() {
+		System.out.println("Preparing " + name);
+		dough = ingredientFactory.createDough(); // 每次他需要一個食材時，就會要求工廠生產他
+ 		sauce = ingredientFactory.createSauce();
+		cheese = ingredientFactory.createCheese();
+	}
+}
 ```
+
+13. 修改 PizzaStore(客戶端)，我們要給他們一地區的食材工廠
+
+```java
+public class NYPizzaStore extends PizzaStore {
+
+	protected Pizza createPizza(String item) {
+		Pizza pizza = null;
+		PizzaIngredientFactory ingredientFactory =
+			new NYPizzaIngredientFactory(); // 紐約店與紐約食材工廠搭配。他會使用生產所有紐約風味Pizza的食材
+
+		if (item.equals("cheese")) {
+
+			pizza = new CheesePizza(ingredientFactory); // 將食材工廠傳給各個Pizza
+			pizza.setName("New York Style Cheese Pizza");
+
+		} else if (item.equals("veggie")) {
+
+			pizza = new VeggiePizza(ingredientFactory);
+			pizza.setName("New York Style Veggie Pizza");
+
+		} else if (item.equals("clam")) {
+
+			pizza = new ClamPizza(ingredientFactory);
+			pizza.setName("New York Style Clam Pizza");
+
+		} else if (item.equals("pepperoni")) {
+
+			pizza = new PepperoniPizza(ingredientFactory);
+			pizza.setName("New York Style Pepperoni Pizza");
+
+		}
+		return pizza;
+	}
+}
+```
+
+![抽象工廠的PizzaStore](./%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%BB%A0%E7%9A%84PizzaStore.png)
+
+> [!NOTE]
+>
+> 抽象工廠提供一種介面來讓我們建立一個**產品家族**。使用這種介面可以 _程式碼_ 與 _建立產品的實際工廠_ 解偶。這可以讓我們製作各種工廠，為**不同的背景**(例如不同的地區、作業系統、外觀與感覺)生產不同的產品。
 
 ## 比較工廠方法和抽象工廠
 
-|   比較   |               觀察者模式(Observer Pattern)                |        發布/訂閱模式(Publish/Subscribe Pattern)        |
-| :------: | :-------------------------------------------------------: | :----------------------------------------------------: |
-| 模式類別 |                      Design Pattern                       |                   Messaging Pattern                    |
-| 知道對方 | 觀察者知道 Subject 的，Subject 也一直保持對觀察者進行記錄 | 發布者和訂閱者不知道對方的存在，只透過消息代理進行通訊 |
-|  耦合性  |                         相對耦合                          |                     組件是鬆散耦合                     |
-|   同步   |                  大多是同步(synchronous)                  |           大多是異步(asynchronous)(消息對列)           |
+| 比較 | 工廠方法模式(Factory Method Pattern) | 抽象工廠模式(Abstract Factory Pattern) |
+| :--: | :----------------------------------: | :------------------------------------: |
+| 關注 |       單一產品的建立過程(new)        |         產品族和產品之間的關係         |
