@@ -51,12 +51,15 @@ public void measurementsChanged() {
 ```
 
 > [!WARNING]
+>
 > 傳入參數未來可能會越來越多
 
 > [!WARNING]
+>
 > 不一定每個畫面都需要所有觀測資料
 
 > [!WARNING]
+>
 > 違反開放封閉原則，我們就無法在不修改程式的情況下，加入或移除其他元素
 
 ### 對象(SUBJECT) + 觀察者(OBSERVER) = 觀察者模式
@@ -76,6 +79,7 @@ public void measurementsChanged() {
 5. 修改 Subject 或觀察者，都不會影響到對方
 
 > [!TIP]
+>
 > 努力為彼此互動的物件做出鬆耦合的設計
 
 ### 使用觀察模式後的設計
@@ -262,7 +266,7 @@ public void update() {
 
 ### 同步/非同步？
 
-NotifyObserver()的實作方式通常是走訪observers成員，並且呼叫他們的Update()，通知他們做事。但若Update()會執行很久，會導致整個通知過程會很慢。因為Subject必須等Observer做事完後，才會繼續通知下一個Observer.
+NotifyObserver()的實作方式通常是走訪 observers 成員，並且呼叫他們的 Update()，通知他們做事。但若 Update()會執行很久，會導致整個通知過程會很慢。因為 Subject 必須等 Observer 做事完後，才會繼續通知下一個 Observer.
 
 ![AsyncOrSync](AsyncOrSync.png)
 
@@ -280,6 +284,7 @@ NotifyObserver()的實作方式通常是走訪observers成員，並且呼叫他�
 ![發布/訂閱模式](./%E7%99%BC%E4%BD%88%E8%A8%82%E9%96%B1%E6%A8%A1%E5%BC%8F.png?raw=true)
 
 1. 模組的解偶
+
     > 發佈者(Publisher)和訂閱者(Subscriber)之間，透過中間人(broker)或 Message/Event Bus 來解偶
     >
     > 就像訂閱某個粉專，訂閱者不需要知道發文的小編是誰
@@ -290,6 +295,7 @@ NotifyObserver()的實作方式通常是走訪observers成員，並且呼叫他�
 ## 觀察者模式 + 中介者模式
 
 > [!WARNING]
+>
 > 一般的觀察者模式 Subject 仍需要保留 Observer 的引用，無法真正解偶
 
 ![觀察者模式 + 中介者模式](./%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fplus%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F.png)
