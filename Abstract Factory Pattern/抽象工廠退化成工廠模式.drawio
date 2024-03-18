@@ -1,0 +1,52 @@
+<mxfile host="Electron" modified="2024-03-18T08:49:44.231Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="CH2wNjfJGrBeYOC7sWE4" version="24.0.4" type="device">
+  <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dNxyNK7c78bLwvsdeMH5-19" value="產品族" style="swimlane;html=1;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;horizontal=0;startSize=20;horizontalStack=0;" parent="1" vertex="1">
+          <mxGeometry x="120" y="120" width="840" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="dNxyNK7c78bLwvsdeMH5-21" value="PizzaIngredientFactory" style="swimlane;html=1;startSize=20;horizontal=0;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="dNxyNK7c78bLwvsdeMH5-19" vertex="1">
+          <mxGeometry x="20" width="820" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-19" value="NYPizzaIngredientFactory" style="swimlane;html=1;startSize=20;horizontal=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="dNxyNK7c78bLwvsdeMH5-19">
+          <mxGeometry x="20" y="200" width="820" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="dNxyNK7c78bLwvsdeMH5-20" value="ChicagoPizzaIngredientFactory" style="swimlane;html=1;startSize=20;horizontal=0;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="dNxyNK7c78bLwvsdeMH5-19" vertex="1">
+          <mxGeometry x="20" y="400" width="820" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-13" value="分類的產品" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="80" width="800" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-20" value="Dough" style="swimlane;startSize=20;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="XuRoDqvD5nhlAqRnxEUf-13">
+          <mxGeometry y="20" width="200" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-21" value="Dough&lt;br&gt;Interface" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.document;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="XuRoDqvD5nhlAqRnxEUf-20">
+          <mxGeometry x="50" y="70" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-25" value="ThinCrushDough" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XuRoDqvD5nhlAqRnxEUf-20">
+          <mxGeometry x="40" y="260" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-15" value="" style="swimlane;startSize=20;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="XuRoDqvD5nhlAqRnxEUf-13">
+          <mxGeometry x="200" y="20" width="200" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-16" value="" style="swimlane;startSize=20;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="XuRoDqvD5nhlAqRnxEUf-13">
+          <mxGeometry x="400" y="20" width="200" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-18" value="" style="swimlane;startSize=20;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="XuRoDqvD5nhlAqRnxEUf-13">
+          <mxGeometry x="600" y="20" width="200" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-32" value="ThinCrushDough" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="200" y="560" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-41" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#008000;" vertex="1" parent="1">
+          <mxGeometry x="190" y="150" width="140" height="690" as="geometry" />
+        </mxCell>
+        <mxCell id="XuRoDqvD5nhlAqRnxEUf-42" value="將Dough改成Pizza&lt;br&gt;就是工廠方法" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#2f8000;" vertex="1" parent="1">
+          <mxGeometry x="190" y="770" width="140" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
