@@ -126,55 +126,55 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory { // 紐
 
 ```java
 public abstract class Pizza {
-	String name;
+    String name;
 
     /* 每一種Pizza都保存一組食材，在準備時使用 */
-	Dough dough;
-	Sauce sauce;
-	Veggies veggies[];
-	Cheese cheese;
-	Pepperoni pepperoni;
-	Clams clam;
+    Dough dough;
+    Sauce sauce;
+    Veggies veggies[];
+    Cheese cheese;
+    Pepperoni pepperoni;
+    Clams clam;
 
     // 把prepare宣告成抽象的。我們將在這裡收集Pizza
-	abstract void prepare();
+    abstract void prepare();
 
-	void bake() {
-		System.out.println("Bake for 25 minutes at 350");
-	}
+    void bake() {
+        System.out.println("Bake for 25 minutes at 350");
+    }
 
-	void cut() {
-		System.out.println("Cutting the pizza into diagonal slices");
-	}
+    void cut() {
+        System.out.println("Cutting the pizza into diagonal slices");
+    }
 
-	void box() {
-		System.out.println("Place pizza in official PizzaStore box");
-	}
+    void box() {
+        System.out.println("Place pizza in official PizzaStore box");
+    }
 
-	void setName(String name) {
-		this.name = name;
-	}
+    void setName(String name) {
+        this.name = name;
+    }
 
-	String getName() {
-		return name;
-	}
+    String getName() {
+        return name;
+    }
 }
 
 // ----------------------------------------------------------------
 
 public class CheesePizza extends Pizza {
-	PizzaIngredientFactory ingredientFactory;
+    PizzaIngredientFactory ingredientFactory;
 
-	public CheesePizza(PizzaIngredientFactory ingredientFactory) { // 為了製作Pizza，我需要一個工廠來提供食材
-		this.ingredientFactory = ingredientFactory; // 會在建構式接收一個工廠，並將它存入一個實例變數
-	}
+    public CheesePizza(PizzaIngredientFactory ingredientFactory) { // 為了製作Pizza，我需要一個工廠來提供食材
+        this.ingredientFactory = ingredientFactory; // 會在建構式接收一個工廠，並將它存入一個實例變數
+    }
 
-	void prepare() {
-		System.out.println("Preparing " + name);
-		dough = ingredientFactory.createDough(); // 每次他需要一個食材時，就會要求工廠生產他
- 		sauce = ingredientFactory.createSauce();
-		cheese = ingredientFactory.createCheese();
-	}
+    void prepare() {
+        System.out.println("Preparing " + name);
+        dough = ingredientFactory.createDough(); // 每次他需要一個食材時，就會要求工廠生產他
+         sauce = ingredientFactory.createSauce();
+        cheese = ingredientFactory.createCheese();
+    }
 }
 ```
 
@@ -183,34 +183,34 @@ public class CheesePizza extends Pizza {
 ```java
 public class NYPizzaStore extends PizzaStore {
 
-	protected Pizza createPizza(String item) {
-		Pizza pizza = null;
-		PizzaIngredientFactory ingredientFactory =
-			new NYPizzaIngredientFactory(); // 紐約店與紐約食材工廠搭配。他會使用生產所有紐約風味Pizza的食材
+    protected Pizza createPizza(String item) {
+        Pizza pizza = null;
+        PizzaIngredientFactory ingredientFactory =
+            new NYPizzaIngredientFactory(); // 紐約店與紐約食材工廠搭配。他會使用生產所有紐約風味Pizza的食材
 
-		if (item.equals("cheese")) {
+        if (item.equals("cheese")) {
 
-			pizza = new CheesePizza(ingredientFactory); // 將食材工廠傳給各個Pizza
-			pizza.setName("New York Style Cheese Pizza");
+            pizza = new CheesePizza(ingredientFactory); // 將食材工廠傳給各個Pizza
+            pizza.setName("New York Style Cheese Pizza");
 
-		} else if (item.equals("veggie")) {
+        } else if (item.equals("veggie")) {
 
-			pizza = new VeggiePizza(ingredientFactory);
-			pizza.setName("New York Style Veggie Pizza");
+            pizza = new VeggiePizza(ingredientFactory);
+            pizza.setName("New York Style Veggie Pizza");
 
-		} else if (item.equals("clam")) {
+        } else if (item.equals("clam")) {
 
-			pizza = new ClamPizza(ingredientFactory);
-			pizza.setName("New York Style Clam Pizza");
+            pizza = new ClamPizza(ingredientFactory);
+            pizza.setName("New York Style Clam Pizza");
 
-		} else if (item.equals("pepperoni")) {
+        } else if (item.equals("pepperoni")) {
 
-			pizza = new PepperoniPizza(ingredientFactory);
-			pizza.setName("New York Style Pepperoni Pizza");
+            pizza = new PepperoniPizza(ingredientFactory);
+            pizza.setName("New York Style Pepperoni Pizza");
 
-		}
-		return pizza;
-	}
+        }
+        return pizza;
+    }
 }
 ```
 
@@ -231,7 +231,7 @@ public class NYPizzaStore extends PizzaStore {
 
 public interface PizzaIngredientFactory { // 宣告成介面，讓子類工廠實作
 
-	/* 產品不只一種，而是產品家族 */
+    /* 產品不只一種，而是產品家族 */
     public Dough createDough();
     public Sauce createSauce();
     public Cheese createCheese();
@@ -244,7 +244,7 @@ public interface PizzaIngredientFactory { // 宣告成介面，讓子類工廠�
 
 public class NYPizzaIngredientFactory implements PizzaIngredientFactory { // 實作工廠介面
 
-	/* 會有多個物件，每個物件都是一個分類的產品，透過他們組合再一起*/
+    /* 會有多個物件，每個物件都是一個分類的產品，透過他們組合再一起*/
     public Dough createDough() {
         return new ThinCrustDough(); // 提供實作實例
     }
@@ -257,7 +257,7 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory { // 實
         return new ReggianoCheese();
     }
 
-	...
+    ...
 }
 
 // ----------------------------工廠方法--------------------------------
@@ -265,10 +265,10 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory { // 實
 public abstract class PizzaStore { // 宣告成抽象類別，讓子類實作工廠方法
 
     public Pizza orderPizza(String type) {
-		...
+        ...
     }
 
-	/* 產品只有一個 */
+    /* 產品只有一個 */
     protected abstract Pizza createPizza(String item); // 宣告成抽象，讓子類實作
 }
 
@@ -276,7 +276,7 @@ public abstract class PizzaStore { // 宣告成抽象類別，讓子類實作工
 
 public class NYPizzaStore extends PizzaStore {// 繼承工廠介面
 
-	/* 回傳一個分類的產品 */
+    /* 回傳一個分類的產品 */
     Pizza createPizza(String item) { // 子類決定要實例化哪一個
         if (item.equals("cheese")) {
             return new NYStyleCheesePizza();
