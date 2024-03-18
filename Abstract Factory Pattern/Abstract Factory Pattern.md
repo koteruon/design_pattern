@@ -222,6 +222,95 @@ public class NYPizzaStore extends PizzaStore {
 
 ## 比較工廠方法和抽象工廠
 
-| 比較 | 工廠方法模式(Factory Method Pattern) | 抽象工廠模式(Abstract Factory Pattern) |
-| :--: | :----------------------------------: | :------------------------------------: |
-| 關注 |       單一產品的建立過程(new)        |         產品族和產品之間的關係         |
+### 抽象工廠裡的方法都被宣告成抽象的，讓子類別覆寫，來建立某個物件，他們是不是藏在抽象工廠裡的工廠方法？
+
+-   抽象工廠的方法通常被做成工廠方法。抽象工廠的工作是定義一個介面，用他來建立一組產品。在那個介面裡面的每一個方法都負責建立一個具體產品，我們實作抽象工廠的子類別，來提供這些實作。所以若要在抽象工廠裡實作產品方法，使用工廠方法是很自然的作法。
+
+```java
+// ----------------------------抽象工廠方法----------------------------
+
+public interface PizzaIngredientFactory { // 宣告成介面，讓子類工廠實作
+
+	/* 產品不只一種，而是產品家族 */
+    public Dough createDough();
+    public Sauce createSauce();
+    public Cheese createCheese();
+    public Veggies[] createVeggies();
+    public Pepperoni createPepperoni();
+    public Clams createClam();
+}
+
+// -----------------------------------------------------------------
+
+public class NYPizzaIngredientFactory implements PizzaIngredientFactory { // 實作工廠介面
+
+	/* 會有多個物件，每個物件都是一個分類的產品，透過他們組合再一起*/
+    public Dough createDough() {
+        return new ThinCrustDough(); // 提供實作實例
+    }
+
+    public Sauce createSauce() {
+        return new MarinaraSauce();
+    }
+
+    public Cheese createCheese() {
+        return new ReggianoCheese();
+    }
+
+	...
+}
+
+// ----------------------------工廠方法--------------------------------
+
+public abstract class PizzaStore { // 宣告成抽象類別，讓子類實作工廠方法
+
+    public Pizza orderPizza(String type) {
+		...
+    }
+
+	/* 產品只有一個 */
+    protected abstract Pizza createPizza(String item); // 宣告成抽象，讓子類實作
+}
+
+// -----------------------------------------------------------------
+
+public class NYPizzaStore extends PizzaStore {// 繼承工廠介面
+
+	/* 回傳一個分類的產品 */
+    Pizza createPizza(String item) { // 子類決定要實例化哪一個
+        if (item.equals("cheese")) {
+            return new NYStyleCheesePizza();
+        } else if (item.equals("veggie")) {
+            return new NYStyleVeggiePizza();
+        } else if (item.equals("clam")) {
+            return new NYStyleClamPizza();
+        } else if (item.equals("pepperoni")) {
+            return new NYStylePepperoniPizza();
+        } else return null;
+    }
+}
+```
+
+### 差異
+
+|   比較   |           工廠方法模式(Factory Method Pattern)           |                    抽象工廠模式(Abstract Factory Pattern)                    |
+| :------: | :------------------------------------------------------: | :--------------------------------------------------------------------------: |
+|   關注   |                 單一產品的建立過程(new)                  |                            產品族和產品之間的關係                            |
+|   目的   |  建立一系列的產品，且想要確保用戶端製作的產品屬於同一類  | 將用戶端程式碼與需要實例化的具體類別解偶，或是事先不知道需要使用的具體類別時 |
+| 創建方法 |                       用類別(繼承)                       |                                 用物件(組合)                                 |
+| 實現方法 |      建立物件。其實只讓你用子類別來為你做建立的動作      | 物件組合。提供一個用來建立一系列產品的抽象型態，讓子類別負責定義產品怎麼產生 |
+|   用法   | 用戶端只需要知道所使用的抽象型態，具體型態交給子類別處理 |              要先實例化一個，在將他傳入針對抽象型態撰寫的程式碼              |
+|   擴展   |              只需要繼承工廠方法，並實作即可              |            需要修改介面，必須修改每一個子類別的介面，是繁重的工作            |
+| 物件特色 |     抽象工廠裡只有一個工廠方法，只創建一個分類的產品     |               抽象工廠裡定義很多工廠方法，每個工廠方法創建一個               |
+
+## 抽象工廠在JDK中的例子
+
+### TransformerFactory
+
+![TransformerFactory](./TransformerFactory.png)
+
+* **抽象工廠**：TransformerFactory,SAXTransformerFactory
+* **工廠方法**：newTransformer(), newTemplates()
+* **具體工廠**：SmartTransformerFactoryImpl, TransformerFactoryImpl
+* **抽象產品**：Transformer、Templates
+* **具體產品**：Transformer實現類、Templates實現類
