@@ -438,4 +438,9 @@ A: 簡單工廠可以將物件的建立封裝起來，但是無法提供工廠�
 
 ## 工廠方法的例子
 
-### JDK的
+### JDK 的 java.util.Collection#iterator
+
+-   Collection 介面就是一個抽象工廠，ArrayList 具體工廠
+-   Iterator 介面是抽象產品，ListIterator 是抽象產品
+
+![JDK中的應用](./JDK%E4%B8%AD%E7%9A%84%E6%87%89%E7%94%A8.png)
