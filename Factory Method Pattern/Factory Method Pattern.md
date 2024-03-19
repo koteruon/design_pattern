@@ -444,3 +444,77 @@ A: 簡單工廠可以將物件的建立封裝起來，但是無法提供工廠�
 -   Iterator 介面是抽象產品，ListIterator 是抽象產品
 
 ![JDK中的應用](./JDK%E4%B8%AD%E7%9A%84%E6%87%89%E7%94%A8.png)
+
+## Lambda 和 Enum 的寫法
+
+### 只有 Lambda
+
+:o:**優點**
+
+1. 可以減少 Class 的數量
+
+:x:**缺點**
+
+1. 工廠需要多個引數時無法使用
+
+```java
+// ---------------------將工廠類改成Lambda-------------------
+public class NYPizzaStore extends PizzaStore {
+
+    // 改成Map對應
+    private static final Map<String, Optional<Supplier<Pizza>>> map = new ConcurrentHashMap<>();
+
+    static {
+        map.put("NYStyleCheesePizza", Optional.of(NYStyleCheesePizza::new));
+        map.put("NYStyleVeggiePizza", Optional.of(NYStyleVeggiePizza::new));
+        map.put("NYStyleClamPizza", Optional.of(NYStyleClamPizza::new));
+        map.put("NYStylePepperoniPizza", Optional.of(NYStylePepperoniPizza::new));
+    }
+
+    static Pizza createPizza(String item) { // 選擇哪一種紐約風味的Pizza
+        return map.get(item)
+                  .orElseThrow(() -> new IllegalArgumentException("No such item: " + item))
+                  .get();
+    }
+}
+```
+
+### Lambda + Enum
+
+:o:**優點**
+
+1. Enum 可以不用寫 Optional
+
+:x:**缺點**
+
+1. 如果使用 Enum 則會造成選擇的邏輯無法集中在工廠裡面
+
+```java
+// -----------------------------建立ENUM類-----------------------------
+public enum NYStylePizzaEnum {
+    NYStyleCheesePizza(NYStyleCheesePizza::new),
+    NYStyleVeggiePizza(NYStyleVeggiePizza::new),
+    NYStyleClamPizza(NYStyleClamPizza::new),
+    NYStylePepperoniPizza(NYStylePepperoniPizza::new);
+
+    private final Supplier<Pizza> constructor;
+
+    NYStylePizzaEnum(Supplier<Pizza> constructor) {
+        this.constructor = constructor;
+    }
+
+    public Supplier<Pizza> getConstructor() {
+        return constructor
+    }
+}
+
+// -----------------------------將工廠改為使用ENUM類----------------------
+
+public class NYPizzaStore extends PizzaStore {
+
+    // 使用Enum來選擇，但如何判斷使用哪一個Enum的邏輯可能無法集中，會跑到工廠外部
+    Pizza createPizza(NYStylePizzaEnum NYStylePizza) {
+        return NYStylePizza.getConstructor().get();
+    }
+}
+```
