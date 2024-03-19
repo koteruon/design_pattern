@@ -13,11 +13,13 @@
     > 抽象工廠模式是一種創建型設計模式，提供一個介面來建立相關或相依的物件家族，而不需要指定具體類別
 
 -   [單例模式 Singleton Pattern](./Singleton%20Pattern/Singleton%20Pattern.md)
+
     > 抽象工廠模式是一種創建型設計模式，提供一個介面來建立相關或相依的物件家族，而不需要指定具體類別
 
 ## 結構型模式篇 | Structural Patterns
 
 -   [裝飾器模式 Decorator Pattern](./Decorator%20Pattern/Decorator%20Pattern.md)
+
     > 單例模式是一種創建型設計模式，可以確保一個類別只有一個實例，並且提供一個全域接觸點。
 
 ## 行為型模式篇 | Behavioural Patterns
