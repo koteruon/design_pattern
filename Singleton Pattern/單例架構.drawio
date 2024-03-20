@@ -1,0 +1,70 @@
+<mxfile host="Electron" modified="2024-03-20T11:08:54.358Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="-kJ--57deKQs94FuNhOi" version="24.0.4" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1430" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="7NXUiiCRiOMbON-mkLnw-26" value="&lt;span style=&quot;font-weight: 400; text-wrap: nowrap;&quot;&gt;Singleton&lt;/span&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="350" y="490" width="170" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--4" value="- instance: Singleton" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7NXUiiCRiOMbON-mkLnw-26">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7NXUiiCRiOMbON-mkLnw-27" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="7NXUiiCRiOMbON-mkLnw-26" vertex="1">
+          <mxGeometry y="52" width="170" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--5" value="+ Singleton()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7NXUiiCRiOMbON-mkLnw-26">
+          <mxGeometry y="60" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--6" value="+ getInstance(): Singleton" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7NXUiiCRiOMbON-mkLnw-26">
+          <mxGeometry y="86" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fPhXgaRIsB58aC-52hZ1-0" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=elbowEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.988;entryY=0.125;entryDx=0;entryDy=0;entryPerimeter=0;" parent="7NXUiiCRiOMbON-mkLnw-26" source="hXZvy46-3-YHfrB3Ggu--4" target="7NXUiiCRiOMbON-mkLnw-26" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="42" as="sourcePoint" />
+            <mxPoint x="290" y="95" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="210" y="30" />
+              <mxPoint x="380" y="105" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--7" value="Client" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="200" y="562" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--8" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.002;entryY=0.22;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="hXZvy46-3-YHfrB3Ggu--7" target="hXZvy46-3-YHfrB3Ggu--6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="730" as="sourcePoint" />
+            <mxPoint x="350" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--9" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;if (instance == null) {&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; // 注意：如果程式碼需要支援多執行緒&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; // 必須在此放置執行緒鎖&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; instance = new Singleton()&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;return instance&lt;/span&gt;&lt;/div&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="330" y="640" width="270" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--10" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" vertex="1" parent="hXZvy46-3-YHfrB3Ggu--9">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--12" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.147;exitY=0.001;exitDx=0;exitDy=0;exitPerimeter=0;fillColor=#f5f5f5;strokeColor=#666666;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="hXZvy46-3-YHfrB3Ggu--9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="652" as="sourcePoint" />
+            <mxPoint x="370" y="602" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--16" value="" style="group" vertex="1" connectable="0" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="320" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--14" value="" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="hXZvy46-3-YHfrB3Ggu--16">
+          <mxGeometry width="210.00000000000003" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--13" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;1&lt;/font&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="hXZvy46-3-YHfrB3Ggu--16">
+          <mxGeometry width="210.00000000000003" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hXZvy46-3-YHfrB3Ggu--15" value="&lt;b&gt;單例(Singleton)&lt;/b&gt;&lt;div&gt;宣告一個名稱為getInstance的靜態方法&lt;/div&gt;&lt;div&gt;來返回所屬類的一個相同實例&lt;/div&gt;&lt;div&gt;單例的建構子必須對客戶端(Client)隱藏&lt;br&gt;getInstance方法是或許實例的唯一方法&lt;/div&gt;" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="hXZvy46-3-YHfrB3Ggu--16">
+          <mxGeometry y="30" width="210" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
