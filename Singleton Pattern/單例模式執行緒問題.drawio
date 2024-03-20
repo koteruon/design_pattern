@@ -1,134 +1,134 @@
-<mxfile host="Electron" modified="2024-03-20T12:07:11.146Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="V02cFCnEMTR1xMMlPTIP" version="24.0.4" type="device">
+<mxfile host="Electron" modified="2024-03-20T12:11:14.242Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="iYfAWU2fIsIJrZlOhl06" version="24.0.4" type="device">
   <diagram id="wFE0QG_FPsp0jaGvCLVb" name="Page-1">
-    <mxGraphModel dx="792" dy="1187" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1098" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="_5mSTuPxr-ZiKRkBDSY7-1" value="" style="swimlane;fontStyle=2;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;swimlaneFillColor=none;fontFamily=Permanent Marker;fontSize=16;points=[];verticalAlign=top;stackBorder=0;resizable=1;strokeWidth=2;sketch=1;disableMultiStroke=1;" parent="1" vertex="1">
           <mxGeometry x="120" y="100" width="540" height="860" as="geometry" />
         </mxCell>
-        <object label="TO DO" status="New" id="_5mSTuPxr-ZiKRkBDSY7-2">
+        <object label="Thread 1" status="New" id="_5mSTuPxr-ZiKRkBDSY7-2">
           <mxCell style="swimlane;strokeWidth=2;fontFamily=Permanent Marker;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=#A0522D;" parent="_5mSTuPxr-ZiKRkBDSY7-1" vertex="1">
             <mxGeometry y="28" width="180" height="832" as="geometry" />
           </mxCell>
         </object>
         <object label="Public static Singleton getInstance() {" placeholders="1" id="pk3curc42VveAcxL11IA-1">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-2">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
             <mxGeometry x="20" y="21" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="&amp;nbsp;" placeholders="1" id="pk3curc42VveAcxL11IA-6">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-2">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
             <mxGeometry x="20" y="121" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="if (uniqueInstance == null) {" placeholders="1" id="pk3curc42VveAcxL11IA-7">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-2">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
             <mxGeometry x="20" y="221" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="&amp;nbsp;" placeholders="1" id="pk3curc42VveAcxL11IA-11">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-2">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
             <mxGeometry x="20" y="321" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="uniqueInstance = new Singleton()" placeholders="1" id="pk3curc42VveAcxL11IA-10">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-2">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
             <mxGeometry x="20" y="421" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="return uniqueInstance" placeholders="1" id="pk3curc42VveAcxL11IA-12">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-2">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
             <mxGeometry x="20" y="521" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="DOING" status="In progress" id="_5mSTuPxr-ZiKRkBDSY7-6">
+        <object label="Thread 2" status="In progress" id="_5mSTuPxr-ZiKRkBDSY7-6">
           <mxCell style="swimlane;strokeWidth=2;fontFamily=Permanent Marker;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=#006600;" parent="_5mSTuPxr-ZiKRkBDSY7-1" vertex="1">
             <mxGeometry x="180" y="28" width="180" height="832" as="geometry" />
           </mxCell>
         </object>
         <object label="&amp;nbsp;" placeholders="1" id="pk3curc42VveAcxL11IA-2">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-6">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
             <mxGeometry x="20" y="21" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="Public static Singleton getInstance() {" placeholders="1" id="pk3curc42VveAcxL11IA-3">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-6">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
             <mxGeometry x="20" y="121" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="&amp;nbsp;" placeholders="1" id="pk3curc42VveAcxL11IA-9">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-6">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
             <mxGeometry x="20" y="221" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="if (uniqueInstance == null) {" placeholders="1" id="pk3curc42VveAcxL11IA-8">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-6">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
             <mxGeometry x="20" y="321" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="&amp;nbsp;" placeholders="1" id="pk3curc42VveAcxL11IA-13">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-6">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
             <mxGeometry x="20" y="421" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="&amp;nbsp;" placeholders="1" id="pk3curc42VveAcxL11IA-14">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-6">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
             <mxGeometry x="20" y="521" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="uniqueInstance = new Singleton()" placeholders="1" id="pk3curc42VveAcxL11IA-15">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-6">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
             <mxGeometry x="20" y="621" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="return uniqueInstance" placeholders="1" id="pk3curc42VveAcxL11IA-16">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-6">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
             <mxGeometry x="20" y="721" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
-        <object label="DONE" status="Completed" id="_5mSTuPxr-ZiKRkBDSY7-9">
+        <object label="uniqueInstance的值" status="Completed" id="_5mSTuPxr-ZiKRkBDSY7-9">
           <mxCell style="swimlane;strokeWidth=2;fontFamily=Permanent Marker;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=#1BA1E2;" parent="_5mSTuPxr-ZiKRkBDSY7-1" vertex="1">
             <mxGeometry x="360" y="28" width="180" height="832" as="geometry" />
           </mxCell>
         </object>
         <object label="null" placeholders="1" id="pk3curc42VveAcxL11IA-4">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-9">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-9" vertex="1">
             <mxGeometry x="20" y="21" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="null" placeholders="1" id="pk3curc42VveAcxL11IA-17">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-9">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-9" vertex="1">
             <mxGeometry x="20" y="121" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="null" placeholders="1" id="pk3curc42VveAcxL11IA-18">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-9">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-9" vertex="1">
             <mxGeometry x="20" y="221" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="null" placeholders="1" id="pk3curc42VveAcxL11IA-20">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-9">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-9" vertex="1">
             <mxGeometry x="20" y="321" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="&lt;font color=&quot;#009900&quot;&gt;&amp;lt;object 1&amp;gt;&lt;/font&gt;" placeholders="1" id="pk3curc42VveAcxL11IA-19">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;fontColor=#025c00;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-9">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;fontColor=#025c00;" parent="_5mSTuPxr-ZiKRkBDSY7-9" vertex="1">
             <mxGeometry x="20" y="421" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="&amp;lt;object 1&amp;gt;" placeholders="1" id="pk3curc42VveAcxL11IA-31">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;fontColor=#009900;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-9">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;fontColor=#009900;" parent="_5mSTuPxr-ZiKRkBDSY7-9" vertex="1">
             <mxGeometry x="20" y="521" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="&lt;font color=&quot;#0000ff&quot;&gt;&amp;lt;object 2&amp;gt;&lt;/font&gt;" placeholders="1" id="pk3curc42VveAcxL11IA-22">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-9">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-9" vertex="1">
             <mxGeometry x="20" y="621" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
         <object label="&lt;font color=&quot;#0000ff&quot;&gt;&amp;lt;object 2&amp;gt;&lt;/font&gt;" placeholders="1" id="pk3curc42VveAcxL11IA-23">
-          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" vertex="1" parent="_5mSTuPxr-ZiKRkBDSY7-9">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];fontFamily=Permanent Marker;hachureGap=8;fillWeight=1;glass=0;shadow=0;textShadow=0;strokeColor=none;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-9" vertex="1">
             <mxGeometry x="20" y="721" width="140" height="80" as="geometry" />
           </mxCell>
         </object>
