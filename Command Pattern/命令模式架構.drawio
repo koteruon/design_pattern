@@ -1,0 +1,225 @@
+<mxfile host="Electron" modified="2024-03-24T10:17:26.768Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="8i7VbF8RZaP9dqFmPXWf" version="24.0.4" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1430" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--6" value="Receiver" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="120" y="390" width="160" height="60" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--9" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--10" value="+ operation(a, b, c)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
+          <mxGeometry y="34" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-0" value="ConcreteCommand1" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="390" width="200" height="164" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-1" value="- receiver" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-0">
+          <mxGeometry y="26" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-2" value="- params" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-0">
+          <mxGeometry y="52" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-3" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-0">
+          <mxGeometry y="78" width="200" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-5" value="+ Command1(receiver, params)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-0">
+          <mxGeometry y="86" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-25" value="+ execute()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-0">
+          <mxGeometry y="112" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-54" value="+ undo()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-0">
+          <mxGeometry y="138" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-6" value="ConcreteCommand2" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="560" y="390" width="160" height="112" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-7" value="- receiver" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-6">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-9" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-6">
+          <mxGeometry y="52" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-10" value="+ execute()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-6">
+          <mxGeometry y="60" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-53" value="+ undo()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-6">
+          <mxGeometry y="86" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-12" value="&lt;&lt;interface&gt;&gt;&#xa;Command" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="560" y="216" width="160" height="100" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-15" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-12">
+          <mxGeometry y="40" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-26" value="+ execute()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-12">
+          <mxGeometry y="48" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-52" value="+ undo()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-12">
+          <mxGeometry y="74" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-18" value="Invoker" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="200" width="160" height="112" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-20" value="- command" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-18">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-21" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-18">
+          <mxGeometry y="52" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-23" value="+ setCommand(command)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-18">
+          <mxGeometry y="60" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-27" value="+ executeCommand()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-18">
+          <mxGeometry y="86" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-24" value="Client" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="200" y="273" width="80" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-28" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;edgeStyle=elbowEdgeStyle;elbow=vertical;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="TpM9ZJRrQHUFBd00fbiv-0" target="TpM9ZJRrQHUFBd00fbiv-12">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="480" y="330" as="sourcePoint" />
+            <mxPoint x="640" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-29" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;edgeStyle=elbowEdgeStyle;elbow=vertical;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="TpM9ZJRrQHUFBd00fbiv-6" target="TpM9ZJRrQHUFBd00fbiv-12">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="430" y="400" as="sourcePoint" />
+            <mxPoint x="650" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-30" value="" style="endArrow=classic;html=1;rounded=0;entryX=-0.002;entryY=0.173;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="240.2618181818182" as="sourcePoint" />
+            <mxPoint x="559.68" y="239.73999999999992" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-31" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="TpM9ZJRrQHUFBd00fbiv-24" target="zkfFHV4jXpPFQw0GAbJ--6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="250.2618181818182" as="sourcePoint" />
+            <mxPoint x="569.68" y="249.73999999999992" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-32" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="TpM9ZJRrQHUFBd00fbiv-24" target="TpM9ZJRrQHUFBd00fbiv-0">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="312" as="sourcePoint" />
+            <mxPoint x="320" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-33" value="&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;copy = new CopyCommand(editor)&lt;/span&gt;&lt;br&gt;&lt;div&gt;button.setCommand(copy)&lt;/div&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;align=left;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="85" y="200" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-34" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-33">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-36" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.674;entryY=0.999;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#f5f5f5;strokeColor=#666666;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="TpM9ZJRrQHUFBd00fbiv-24" target="TpM9ZJRrQHUFBd00fbiv-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="270" as="sourcePoint" />
+            <mxPoint x="320" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-38" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.144;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#f5f5f5;strokeColor=#666666;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="TpM9ZJRrQHUFBd00fbiv-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="314.99999999999994" y="215.99818181818182" as="sourcePoint" />
+            <mxPoint x="340" y="220.08909090909088" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-39" value="receiver.operation(params)&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;align=left;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="120" y="496" width="180" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-40" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-39">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-41" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.598;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#f5f5f5;strokeColor=#666666;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="TpM9ZJRrQHUFBd00fbiv-25" target="TpM9ZJRrQHUFBd00fbiv-39">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="573" as="sourcePoint" />
+            <mxPoint x="300" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-43" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.75;entryY=1.013;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#f5f5f5;strokeColor=#666666;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="zkfFHV4jXpPFQw0GAbJ--10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="496" as="sourcePoint" />
+            <mxPoint x="265" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-47" value="" style="group" vertex="1" connectable="0" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="290" y="40" width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-45" value="" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-47">
+          <mxGeometry width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-44" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;1&lt;/font&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-47">
+          <mxGeometry width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-46" value="&lt;b&gt;發送者(Invoker)&lt;/b&gt;&lt;div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;持有一個command，&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-align: center;&quot;&gt;在某個時刻，&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial; text-align: center;&quot;&gt;呼叫command&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;的execute()方法來要求他&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;執行請求。&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;注意，發送者不負責建立命令對象，&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;通常會從客戶端獲取預先生成的命令。&lt;/div&gt;" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-47">
+          <mxGeometry y="30" width="230" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-48" value="" style="group" vertex="1" connectable="0" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="530" y="40" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-49" value="" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-48">
+          <mxGeometry width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-50" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;2&lt;/font&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-48">
+          <mxGeometry width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-51" value="&lt;b&gt;命令(Command)&lt;/b&gt;&lt;div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;宣告成一個介面，供所有的command使用&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;command是透過他的execute()方法呼叫的&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;他會要求receiver執行一個動作。&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;介面也會有一個undo()方法，回復上一步。&lt;/div&gt;" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-48">
+          <mxGeometry y="30" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-55" value="" style="group" vertex="1" connectable="0" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="413" y="580" width="230" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-56" value="" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-55">
+          <mxGeometry width="230" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-57" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;3&lt;/span&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-55">
+          <mxGeometry width="230" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-58" value="&lt;b&gt;具體命令(ConcreteCommand)&lt;/b&gt;&lt;div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;定義動作與Receiver的關係。&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Invoker藉著呼叫execute()來發出請求，&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;ConcreteCommand本身不完成工作，&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;ConcreteCommand會藉著呼叫Receiver&lt;br&gt;的一或多個動作來執行他。&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;另外，需要傳參的可以宣告為成員變數，&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;將命令對象設為不可變，&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;僅允許通過建構式對成員變數初始化。&lt;/div&gt;" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-55">
+          <mxGeometry y="30" width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-59" value="" style="group" vertex="1" connectable="0" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="85" y="580" width="230" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-60" value="" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-59">
+          <mxGeometry width="230" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-61" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;4&lt;/span&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-59">
+          <mxGeometry width="230" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-62" value="&lt;b&gt;接收者(Receiver)&lt;/b&gt;&lt;div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;知道如何處理請求，任何類別都可以當作&lt;br&gt;Receiver。&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;絕大部分命令只處理如何將請求傳遞給&lt;br&gt;接收者的細節，&lt;span style=&quot;background-color: initial;&quot;&gt;接收者會完成實際的工作&lt;/span&gt;&lt;/div&gt;" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-59">
+          <mxGeometry y="30" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-63" value="" style="group" vertex="1" connectable="0" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="50" y="40" width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-64" value="" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-63">
+          <mxGeometry width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-65" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;5&lt;/span&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-63">
+          <mxGeometry width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="TpM9ZJRrQHUFBd00fbiv-66" value="&lt;b&gt;客戶端(Client)&lt;/b&gt;&lt;div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;負責建立ConcreteCommand&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;並設定他的Receiver。&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;客戶端必須將包含接收者物件&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;和所有請求參數傳給命令的建構式，&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;此後，生成的命令就可以與&lt;br&gt;一個或多個發送者相連了。&lt;/div&gt;" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="TpM9ZJRrQHUFBd00fbiv-63">
+          <mxGeometry y="30" width="230" height="110" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
