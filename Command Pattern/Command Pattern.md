@@ -614,27 +614,27 @@ public class RemoteLoader {
 
 ```java
 public class MacroCommand implements Command {
-	Command[] commands;
+    Command[] commands;
 
-	public MacroCommand(Command[] commands) { // 接收一個Command陣列，並存入MacroCommand
-		this.commands = commands;
-	}
+    public MacroCommand(Command[] commands) { // 接收一個Command陣列，並存入MacroCommand
+        this.commands = commands;
+    }
 
-	public void execute() {
-		for (int i = 0; i < commands.length; i++) { // 當遙控器執行巨集時，一次執行這些command
-			commands[i].execute();
-		}
-	}
+    public void execute() {
+        for (int i = 0; i < commands.length; i++) { // 當遙控器執行巨集時，一次執行這些command
+            commands[i].execute();
+        }
+    }
 
     /**
      * NOTE:  these commands have to be done backwards to ensure
      * proper undo functionality
      */
-	public void undo() {
-		for (int i = commands.length -1; i >= 0; i--) {
-			commands[i].undo();
-		}
-	}
+    public void undo() {
+        for (int i = commands.length -1; i >= 0; i--) {
+            commands[i].undo();
+        }
+    }
 }
 ```
 
@@ -643,40 +643,40 @@ public class MacroCommand implements Command {
 ```java
 public class RemoteLoader {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		RemoteControl remoteControl = new RemoteControl();
+        RemoteControl remoteControl = new RemoteControl();
 
         // 建立所有的設備：電燈、電視、音響、熱水浴缸
-		Light light = new Light("Living Room");
-		TV tv = new TV("Living Room");
-		Stereo stereo = new Stereo("Living Room");
-		Hottub hottub = new Hottub();
+        Light light = new Light("Living Room");
+        TV tv = new TV("Living Room");
+        Stereo stereo = new Stereo("Living Room");
+        Hottub hottub = new Hottub();
 
         // 建立所有的ON、OFF Command來控制他們
-		LightOnCommand lightOn = new LightOnCommand(light);
-		StereoOnCommand stereoOn = new StereoOnCommand(stereo);
-		TVOnCommand tvOn = new TVOnCommand(tv);
-		HottubOnCommand hottubOn = new HottubOnCommand(hottub);
-		LightOffCommand lightOff = new LightOffCommand(light);
-		StereoOffCommand stereoOff = new StereoOffCommand(stereo);
-		TVOffCommand tvOff = new TVOffCommand(tv);
-		HottubOffCommand hottubOff = new HottubOffCommand(hottub);
+        LightOnCommand lightOn = new LightOnCommand(light);
+        StereoOnCommand stereoOn = new StereoOnCommand(stereo);
+        TVOnCommand tvOn = new TVOnCommand(tv);
+        HottubOnCommand hottubOn = new HottubOnCommand(hottub);
+        LightOffCommand lightOff = new LightOffCommand(light);
+        StereoOffCommand stereoOff = new StereoOffCommand(stereo);
+        TVOffCommand tvOff = new TVOffCommand(tv);
+        HottubOffCommand hottubOff = new HottubOffCommand(hottub);
 
         // 建立On Command的陣列、Off Command的陣列
-		Command[] partyOn = { lightOn, stereoOn, tvOn, hottubOn};
-		Command[] partyOff = { lightOff, stereoOff, tvOff, hottubOff};
+        Command[] partyOn = { lightOn, stereoOn, tvOn, hottubOn};
+        Command[] partyOff = { lightOff, stereoOff, tvOff, hottubOff};
 
         // 並建立兩個對應的巨集來保存他們
-		MacroCommand partyOnMacro = new MacroCommand(partyOn);
-		MacroCommand partyOffMacro = new MacroCommand(partyOff);
+        MacroCommand partyOnMacro = new MacroCommand(partyOn);
+        MacroCommand partyOffMacro = new MacroCommand(partyOff);
 
         // 將巨集command指派給按鈕，和處理任何command一樣
-		remoteControl.setCommand(0, partyOnMacro, partyOffMacro);
+        remoteControl.setCommand(0, partyOnMacro, partyOffMacro);
 
-		System.out.println(remoteControl);
-		System.out.println("--- Pushing Macro On---");
-		remoteControl.onButtonWasPushed(0);
+        System.out.println(remoteControl);
+        System.out.println("--- Pushing Macro On---");
+        remoteControl.onButtonWasPushed(0);
         /*
             Light is on
             Living Room stereo is on
@@ -685,15 +685,15 @@ public class RemoteLoader {
             Hottub is heating to a steaming 104 degrees
             Hottub is bubbling!
         */
-		System.out.println("--- Pushing Macro Off---");
-		remoteControl.offButtonWasPushed(0);
+        System.out.println("--- Pushing Macro Off---");
+        remoteControl.offButtonWasPushed(0);
         /*
             Light is off
             Living Room stereo is off
             Living Room TV is off
             Hottub is cooling to 98 degrees
         */
-	}
+    }
 }
 ```
 
