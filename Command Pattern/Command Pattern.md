@@ -26,8 +26,8 @@
 
 1. 單一職責原則。可以解藕觸發和執行操作的類。
 2. 開放封閉原則。可以在不修改已有客戶端程式碼的情況下，在程式碼中創建先的命令。
-3. 可以實現撤銷和恢復功能
-4. 可以實現操作的延遲執行
+3. 可以實現撤銷和恢復功能(Undoable Operations)
+4. 可以實現操作的延遲執行(Temporal Decoupling)
 5. 可以將一組簡單命令組合成一個複雜命令
 
 :x:**缺點**
@@ -41,6 +41,8 @@ command 物件藉著將準備送給 receiver 的一組行動綁在一起，來**
 > [!TIP]
 >
 > **命令模式**可將請求封裝成物件，讓你可以將請求、佇列或紀錄等物件參數化，並支援可復原的的操作。
+>
+> 將『**引發命令的物件**』與『**實際執行操作的物件**』隔離開來
 
 ### 遇到的需求
 
@@ -602,15 +604,93 @@ public class RemoteLoader {
 }
 ```
 
+### 歷史紀錄的方法
+
+1. 直接儲存(Reference)
+2. Clone 一個新的命令在儲存
+
+第二個是因為：你無法確保執行命令後，**該命令物件不會產生變化，或重複呼叫**，複製一份可以確保其乾淨狀態(Clean State)，這也是 Prototype 模式的應用
+
+> [!NOTE]
+>
+> 命令模式實務上也經常使用 **抽象類別**，來實現模板方法(Template method)，或儲存 Receiver 狀態等共用功能
+
+1. 使用擴展方法 undo()的方式，為了實現**公共功能(Cloneable)**將 Command 介面改成**抽象類別**
+
+```java
+public abstract class Command implements Cloneable{
+    public abstract void execute();
+    public abstract void undo();
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+```
+
+2. Receiver 不用更改，Invoker 使用 Stack 的方式儲存，儲存的為 Clone 後的命令，而非 Reference
+
+```java
+public class InvokerWithHistory {
+    private Queue<Command> commands = new LinkedList<>(); // 巨集佇列命令
+
+    private Stack<Command> history = new Stack<>(); // stack 歷史紀錄
+
+    public InvokerWithHistory() {
+    }
+
+    public void addCommand(Command command) {
+        commands.offer(command);
+    }
+
+    public void cancelCommand(Command command) {
+        commands.remove(command);
+    }
+
+    public void undo() {
+        if (!history.isEmpty()) {
+            Command command = history.pop();
+            command.undo();
+        } else {
+            System.out.println("[復原失敗] --- 查無紀錄");
+        }
+    }
+
+    public void do() {
+        while (!commands.isEmpty()) {
+            Command command = commands.poll();
+            command.execute();
+
+            addHistoryByClone(command); // 執行過後，用Clone的方式儲存Command
+        }
+    }
+
+    private void addHistoryByClone(Command command) {
+        Command commandClone = null;
+        try {
+            commandClone = (Command) command.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        history.push(commandClone);
+    }
+
+    private void addHistoryByReference(Command command) {
+        history.push(command);
+    }
+}
+```
+
 ## 使用巨集 Command(派對模式)
 
 ### 需求
 
 -   希望遙控器可以用一顆按鈕同時調暗燈光、打開音響和電視、讓熱水浴缸開始加溫
 
-### 創建巨集的Command
+### 創建巨集的 Command
 
-1. 製作一種新的 Command，讓他可以執行其他多個Command
+1. 製作一種新的 Command，讓他可以執行其他多個 Command
 
 ```java
 public class MacroCommand implements Command {
@@ -638,7 +718,7 @@ public class MacroCommand implements Command {
 }
 ```
 
-2. 使用巨集Command
+2. 使用巨集 Command
 
 ```java
 public class RemoteLoader {
@@ -697,3 +777,242 @@ public class RemoteLoader {
 }
 ```
 
+## 沒有蠢問題
+
+**Q: 一定要使用 receiver 嗎？為何不讓 command 物件實作 execute()方法的細節？**
+
+A: 通常我們會盡量設計只知道如何呼叫 receiver 的「笨」command 物件。但是你也會看到很多「聰明的」command 物件，它們實作了執行請求所需的大部分(甚至到全部的)邏輯。不過如此一來，invoker 和 receiver 之間的解偶合程度就沒有那麼好了，也無法將 receiver 當成參數傳給 command
+
+**Q: 怎麼做出復原操作的歷史紀錄？我想要讓 undo 按鈕可以按下很多次**
+
+A: 可以用一個 stack 來保存執行過的所有 command，當 undo 被按下時，讓 invoker 從堆疊 pop 出一個 command，並呼叫它的 undo()方法
+
+**Q: 我可以將派對模式寫成 Command 嗎？建立一個 PartyCommand，並將執行其他 Command 的呼叫都放在 PartyCommand 的 execute()方法裡面**
+
+A: 可以，但這樣就將派對模式「寫死」在 PartyCommand 裡面了，如果使用 MacroCommand，可以動態決定哪些 Command，會更加靈活。
+
+## 命令模式的其他用途: 將請求佇列化(ThreadPoolExecutor)
+
+Command 可以讓我們將一個運算(一個 receiver 和一組動作)包裝起來，讓你將它當成一級(first-class)物件到處傳遞。那些計算可能在 client 應用程式建立 command 物件很久之後才被呼叫，甚至可以被不同的執行緒呼叫，利用這種特性來實作例如排程器、執行緒池、工作佇列。
+
+1. 抽象命令 Command: Runnable 介面
+2. 具體命令 ConcreteCommand: 由使用者自己創建這個類，實現 Runnable 介面，重寫 run 方法，在 run 方法中寫具體業務邏輯。(可能會持有 Receiver)
+3. 發送者 Invoker: ThreadPoolExecutor，他持有一個命令隊列，使用者可以向他提交要執行的命令
+4. 接收者 Receiver: 常常與 Runnable 實例中 run 方法重疊，不一定會有
+5. 命令隊列：BlockingQueue，任務阻塞隊列，實際上就是模式中的命令隊列
+
+![ThreadPoolExecutor](./ThreadPoolExecutor.png)
+
+```java
+public interface Runnable {
+    public abstract void run();
+}
+```
+
+```java
+public class ConcreteCommand implements Runnable {
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + " is running")
+    }
+}
+```
+
+```java
+public class ThreadPoolExecutor {
+    private final BlockingQueue<Runnable> workQueue; // 命令隊列
+    public void execute(Runnable runnable) {/*與命令模式無關*/} // 加入命令隊列
+    final void runWorker(Worker w) {/*與命令模式無關*/} // 執行命令隊列中所有命令
+}
+```
+
+```java
+public class ThreadPoolExecutorTest {
+    public static void main(String[] args) {
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(5,
+                Runtime.getRuntime().availableProcessors() * 2,
+                60,
+                TimeUnit.SECONDS,
+                new ArrayBlockQueue<>(200),
+                new ThreadFactory() {
+                    @Override
+                    public Thread newThread(Runnable r) {
+                        Thread t = new Thread(r);
+                        t.setName("order-thread");
+                        return t;
+                    }
+                }, new ThreadPoolExecutor.AbortPolicy());
+
+        Runnable concreteCommand = new ConcreteCommand();
+
+        pool.execute(concreteCommand);
+
+        pool.shutdown();
+    }
+}
+```
+
+## 命令模式的其他用途: 記錄請求
+
+> [!NOTE]
+>
+> 命令的儲存與載入(Store and Load)
+
+有些應用程式的語意(semantic)要求我們記錄所有的動作，並且在當機時，藉著重新呼叫那些動作來復原，命令模式可以讓我們藉著加入**store()與 load()方法**來支援這種語意。在 Java 裡，雖然我們可以用物件序列化來實作這些方法，但是序列化來進行持久保存時需要注意的事情依然存在。 (Java 序列化就是備忘錄模式(Momento)的一種實作)
+
+在執行 command 時，我們將他們的歷史紀錄存入磁碟，當機時，我們重新載入 command 物件，並依序呼叫他們的 execute()。
+
+藉著日記(Logging)，我們可以將上一個檢查點之後的所有動作存起來，在系統故障的時候，將動作應用在那個檢查點上面。擴展這些技術，用**交易(Transactional)**機制來執行好幾組動作。
+
+-   儲存的時機：
+
+    -   新增完命令式
+    -   執行完命令式
+    -   復原執行過的命令後
+
+-   載入的時機：
+
+    -   系統初始化時(檢查是否有未執行命令)
+    -   發生異常時
+
+> [!WARNING]
+>
+> Store 和 Load 的做法比較少見，因為命令還要負責儲存載入，有點**踰越職責**了
+
+### 比較常見的做法是，使用一個新的介面
+
+定義兩個基本操作：
+
+1. writeFile(Store)
+2. readFile(Load)
+
+```java
+public interface Logger {
+    void writeFile(String pathName, Object object);
+    Object readFile(String pathName);
+}
+```
+
+呼叫者 Invoker 在上面儲存和載入的時機點上，呼叫具體的 Logger 方法就可以了，當然要替換儲存與載入的方法或演算法，只需要新增一個類別時做 Logger 介面。
+
+Invoker 不用知道具體的 Logger 是誰，只管呼叫方法，這也是**策略模式**的結合應用～！
+
+### 儲存的實現
+
+1. 物件序列化(Serialization)
+2. 資料庫
+
+-   以物件序列化舉例
+
+1. 首先我們需要被序列化的物件，時做 Serializable 介面，Command 類別時常使用抽象類別
+
+```java
+public abstract class Command implements Cloneable, Serializable{
+    public abstract void execute();
+    public abstract void undo();
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+```
+
+2. 撰寫具體的 Logger 類別
+
+```java
+public class FileLogger implements Logger {
+    public void writeFile(String pathName, Object object) {
+        File file = new File(pathName);
+
+        try (FileOutputStream fs = new FileOutputStream(file);
+             BufferedOutputStream bs = new BufferedOutputStream(fs);
+             ObjectOutputStream os = new ObjectOutputStream(bs)
+        ) {
+
+            // if file doesn't exists, then create it
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            os.writeObject(object);
+
+            System.out.println("-----寫入菜單日誌 (Log)-----");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Object readFile(String pathName) {
+
+        Object result = null;
+
+        File file = new File(pathName);
+
+        if (!file.exists()) {
+            return null;
+        }
+
+        try (FileInputStream fs = new FileInputStream(file);
+             BufferedInputStream bs = new BufferedInputStream(fs);
+             ObjectInputStream os = new ObjectInputStream(bs)) {
+
+            result = os.readObject();
+
+            System.out.println("-----讀取菜單日誌 (Log)-----");
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+}
+```
+
+## 命令模式變形: 封裝接收者 (Encapsulate Receiver)
+
+封裝掉 Receiver (除非真有必要，如撤銷處理)，高階模組 Client，減少了對低階模組 Receiver 的依賴，也就不再需要進行 具體命令 (ConcreteCommand) 與 接收者 (Receiver) 的組裝。
+
+Client 的職責轉變為純粹的：給予 呼叫者 (Invoker) 具體的命令 (ConcreteCommand) 而**不需進行 接收者 (Receiver) 組裝**
+
+> [!CAUTION]
+>
+> 個人並不喜歡
+
+### 失敗的設計
+
+最常見到的就是：
+
+> 接收者 (Receiver) 與 具體命令 (ConcreteCommand) 的耦合
+
+例如：
+
+> 省去 Client 為 ConcreteCommand 設置 Receiver 的動作
+
+出發點是好的，但許多人的做法卻是：
+
+1. 將 ConcreteCommand 直接傳遞給 Receiver
+2. 透過 setReceiver(this); 的方式組裝
+3. Receiver 再去執行命令 ...
+
+這會使的
+
+1. Receiver 除了得撰寫業務邏輯，還要去考慮到 Command 的狀態
+2. Invoker 職責是 要求 Command 執行命令，你現在丟給 Receiver 做，Invoker 無事可做
+3. 命令模式的最大好處: 「將『引發命令的物件』與『實際執行操作的物件』隔離開來」，這下好了，Receiver 同時代表兩者，你還用這個模式幹嘛？
+
+## 命令模式變形: 客戶端 — 職責分離 (Client — Segregation of Duties)
+
+其目的與 『封裝呼叫者 (Encapsulate Receiver)』 一模一樣，Client 的職責轉變為純粹的：給予 呼叫者 (Invoker) 具體的命令 (ConcreteCommand) 而**不需進行 接收者 (Receiver) 組裝**
+
+> [!IMPORTANT]
+>
+> 個人較喜歡
+
+去除 Client 組裝 接收者 (Receiver) 的職責，交給新的類別『餐廳』來組裝。
+
+```java
+
+```
