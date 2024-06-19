@@ -20,6 +20,14 @@
     >
     > 2. 備份狀態可能會占用大量內存。有時需要借助另一種實現方式：反向操作。反向操作也有代價：他可能會很難甚至無法實現。
 
+### 使用時機
+
+1. 想*參數化*請求『欲執行的任務』時
+2. 依不同*時間*或*佇列*執行命令時
+3. 發送*訊息者*與*接收執行者*的生命週期不同時
+4. 讓執行的任務具有*復原*或*日誌*功能時
+5. 實作*交易(Transaction)功能*時
+
 ### 優缺點
 
 :o:**優點**
@@ -971,6 +979,57 @@ public class FileLogger implements Logger {
 }
 ```
 
+## 命令模式的其他用途: 觀察者模式兼命令模式
+
+Java的Swing程式庫有許多**ActionListener**形式的**Observer**可以監聽(或觀察)使用者介面元件的事件。
+
+事實上ActionListener不但是Observer介面，也是Command介面，而且AngelListener、DevilListener類別不僅是Observer，也是具體的Command。
+
+```java
+public class SwingCommandExample {
+    JFrame frame = new JFrame();
+    JPanel panel = new JPanel();
+
+    public static void main(String[] args) {
+        SwingCommandExample example = new SwingCommandExample();
+        example.go();
+    }
+
+    public void go() {
+        // The GUI is the client
+        // The buttons are the invokers
+        JButton onButton = new JButton("On");
+        JButton offButton = new JButton("Off");
+
+        // The light is the receiver
+        JLabel light = new JLabel("light");
+        light.setOpaque(true);
+        light.setBackground(Color.LIGHT_GRAY);
+
+        // The lambdas (ActionListeners) are the commands
+        // The interface that all the commands (listeners) implement is the ActionListener interface.
+        // This interface has one method, actionPerformed(). This is equivalent to the execute() method.
+        // This method which executes the code to run on the receiver, the light.
+        onButton.addActionListener(event ->
+            light.setBackground(Color.YELLOW)
+        );
+        offButton.addActionListener(event ->
+            light.setBackground(Color.LIGHT_GRAY)
+        );
+
+        // Set frame properties
+        frame.setContentPane(panel);
+        panel.add(onButton);
+        panel.add(light);
+        panel.add(offButton);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300,300);
+        frame.setVisible(true);
+    }
+}
+```
+
 ## 命令模式變形: 封裝接收者 (Encapsulate Receiver)
 
 封裝掉 Receiver (除非真有必要，如撤銷處理)，高階模組 Client，減少了對低階模組 Receiver 的依賴，也就不再需要進行 具體命令 (ConcreteCommand) 與 接收者 (Receiver) 的組裝。
@@ -1011,8 +1070,18 @@ Client 的職責轉變為純粹的：給予 呼叫者 (Invoker) 具體的命令 
 >
 > 個人較喜歡
 
-去除 Client 組裝 接收者 (Receiver) 的職責，交給新的類別『餐廳』來組裝。
+去除 Client 組裝 接收者 (Receiver) 的職責，交給新的類別『RemoteLoader』來組裝。Client準備好命令(ConcreteCommand)再傳遞給遙控器(Invoker)即可。
 
 ```java
-
+// client
+RemoteLoader remoteLoader = new RemoteLoader("remote");
+remoteLoader.getRemoteControl();
 ```
+
+## 命令模式變形: 智慧命令
+
+命令 (Command) 不再需要 接收者 (Receiver)，自己就知道怎麼實現功能。
+
+> [!IMPORTANT]
+>
+> 個人較喜歡
