@@ -405,7 +405,7 @@ A: 簡單工廠可以將物件的建立封裝起來，但是無法提供工廠�
 
 ## 依賴反轉原則(Dependency Inversion Principle)
 
-> [!TIP]
+> [!IMPORTANT]
 >
 > 要依賴抽象，不要依賴具體類別
 

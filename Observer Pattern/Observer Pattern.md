@@ -78,7 +78,7 @@ public void measurementsChanged() {
 4. 可以重複利用 Subject 或觀察者，又不會影響到對方
 5. 修改 Subject 或觀察者，都不會影響到對方
 
-> [!TIP]
+> [!IMPORTANT]
 >
 > 努力為彼此互動的物件做出鬆耦合的設計
 
